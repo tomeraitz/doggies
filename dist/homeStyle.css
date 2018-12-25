@@ -47,12 +47,13 @@ body {
     display: grid;
     height: 80%;
     grid-template-columns: 1fr 5fr 1fr;
-    grid-template-rows: 1fr 4fr 2fr;
+    grid-template-rows: 1fr 4fr;
 }
 
 #map-search {
     display: grid;
-    grid-template-columns: 5fr 1fr
+    grid-template-columns: 5fr 1fr;
+    height: 6vh;
 }
 
 #search-inpt {
@@ -61,6 +62,7 @@ body {
     width: 58vw;
     padding-left: 1vw;
     color: #3B413C;
+    margin-right: 1vh;
 }
 
 #search-icon {
@@ -76,6 +78,12 @@ body {
     color: #3B413C
 }
 
+#comunities {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 2vh 0 1vh 0;
+}
+
 #map {
     margin-top: 5vh;
     justify-self: center;
@@ -83,19 +91,51 @@ body {
     color: #fff
 }
 
+#calendar {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 33vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#day > h2 {
+    margin-left: 2vw;
+    color: #3B413C;
+}
+
+.hour {
+    margin-left: 2vw;
+    width: 87%;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    border-top: #3B413C 1px solid;
+    height: 5vh;
+}
+
+.join-hour {
+    justify-self: center;
+}
+
+.hour > span {
+    align-self: center;
+    color: #3B413C;
+}
+
+
 /* POSTS STYLE */
 .posts {
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr
+    grid-template-columns: 1fr 5fr 1fr;
+    margin: 3vh 0;
 }
 
 .single-post {
     display: grid;
-    grid-template-columns: 10% 90%;
-    grid-template-rows: 30% 70%;
+    grid-template-columns: 5% 90%;
     background-color: #fff;
-    height: 30vh;
     border-radius: 5px;
+    height: fit-content;
 }
 
 .username-post {
@@ -111,3 +151,46 @@ body {
     margin: 0;
     color: #3B413C;
 }
+
+.comments {
+    border-top: 1px solid #3B413C;
+    margin: 1% 0;
+}
+
+.single-comment {
+    border-radius: 5px;
+    background-color: #eee;
+    width: fit-content;
+    margin: 1% 0 1% 0;
+    padding: 1%;
+}
+
+.single-comment > p {
+    margin: 0;
+}
+
+.comment-table {
+    width: 100%
+}
+
+.comment-inpt {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 4vh;
+    background-color: #eee
+}
+
+.comment-button {
+    border: none;
+    border-radius: 5px;
+    background-color: #EAEFBD;
+    color: #3B413C;
+    width: 7vw;
+    height: 4vh;
+}
+
+.td-button {
+    width: 5vw;
+}
+
