@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>doggies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="loginStyle.css" />
 </head>
 <body>
     <div id="header">
@@ -21,6 +20,7 @@
                 <td><input class="login-input" type="password"></td>
             </tr>
         </table>
+        <button id="login-button">Log In</button>
     </div>
     
     <div id="middle">
@@ -31,12 +31,30 @@
 
             <table id="sign-up">
                 <td><input class="sign-up-input" type="text" placeholder="First Name"></td>
-                <td><input class="sign-up-input" type="text" placeholder="Last Name"></td>
+                <td><input id="last-name-signup" class="sign-up-input" type="text" placeholder="Last Name"></td>
             </table>
 
             <table>
-                <td><input class="sign-up-input" type="email" placeholder="email"></td>
+                <td><input class="sign-up-input big-signup" type="email" placeholder="Email"></td>
             </table>
+
+            <table>
+                <td><input class="sign-up-input big-signup" type="text" placeholder="Password"></td>
+            </table>
+
+            <table id="date-of-birth">
+                <td><input id="date-ob-inpt" class="sign-up-input big-signup" type="date" placeholder="yo"></td>
+            </table>
+
+            <table id="gender">
+                <td class="gender-name"><input type="radio" name="radio">Male</td>
+                <td class="gender-name"><input type="radio" name="radio">Female</td>
+                <td class="gender-name"><input type="radio" name="radio">Other</td>
+            </table>
+            <table>
+                <td><button id="signup-button">SignUp</button></td>
+            </table>
+
         </div>
     </div>
 </body>
