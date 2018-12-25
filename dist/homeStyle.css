@@ -84,11 +84,12 @@ body {
     margin: 2vh 0 1vh 0;
 }
 
-#map {
+#map-icon {
     margin-top: 5vh;
     justify-self: center;
     align-self: center;
-    color: #fff
+    color: #fff;
+    z-index: 1;
 }
 
 #calendar {
@@ -97,6 +98,7 @@ body {
     height: 33vh;
     overflow: scroll;
     overflow-x: hidden;
+    z-index: 99;
 }
 
 #day > h2 {
@@ -115,13 +117,22 @@ body {
 
 .join-hour {
     justify-self: center;
+    align-self: center;
 }
 
-.hour > span {
+.add-user {
     align-self: center;
+}
+
+.add-user > span {
     color: #3B413C;
 }
 
+.user-calendar-img {
+    border-radius: 50%;
+    height: 3vh;
+    width: 3vh;
+}
 
 /* POSTS STYLE */
 .posts {
