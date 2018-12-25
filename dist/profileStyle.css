@@ -71,6 +71,7 @@ body {
     border-radius: 50%;
     width: 20vh;
     justify-self: center;
+    border: #fff solid 2px
 }
 
 #dogs {
