@@ -10,6 +10,7 @@ const userSchema = new Schema({
     gender: String,
     birthday: Date,
     dogs: [Object],
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
     gardens: [{ type: Schema.Types.ObjectId, ref: 'Garden' }]
 })
 
