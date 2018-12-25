@@ -6,7 +6,6 @@ const postSchema = new Schema({
     garden: { type: Schema.Types.ObjectId, ref: 'Garden' },
     text: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-    attendCounter: Number,
     date: Date
 })
 
