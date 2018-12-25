@@ -112,6 +112,7 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     text: req.body.text,
     date: req.body.date
   })
+  console.log(`new post: ${post.text}`)
   await post.save()
   await User.findByIdAndUpdate(req.params.userId,
     { $push: { posts: post } })
@@ -119,19 +120,74 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     { $push: { posts: post } })
   res.send(post)
 })
+
 //remove post
-router.delete('/post/:postId', function (req, res) {
-  User.find({ gardens: { $in } })
-  Post.findByIdAndDelete(req.params.postId)
-    .exec(function (err, post) {
-      res.send("removed")
+// router.delete('/post/:postId', async function (req, res) {
+//   // const post =
+//   Post.findById(req.params.postId)
+//     .exec(async function (err, post) {
+//       User.findById(post.user)
+//         .populate('posts').exec(async function (err, user) {
+//           user.posts = user.posts.filter(p => p._id != req.params.postId)
+//           await user.save()
+//           console.log(user.posts)
+//         })
+//       await Garden.findById(post.garden)
+//         .populate('posts').exec(async function (err, garden) {
+//           garden.posts = garden.posts.filter(p => p._id != req.params.postId)
+//           await garden.save()
+//         })
+
+//       post.delete()
+//     })
+//   res.send("removed")
+// })
+
+
+
+//add event
+router.post('/event/', async function (req, res) {
+  const event = new Event({
+    garden: req.body.gardenId,
+    date: req.body.time,
+    users: [req.body.userId]
+  })
+  await event.save()
+  Garden.findById(req.body.gardenId)
+    .populate('calendar')
+    .exec(function (err, garden) {
+      garden.calendar.push(event)
+      garden.save().then(res.send(garden))
+    })
+})
+//join event
+router.put('/event/', async function (req, res) {
+  Event.findById(req.body.eventId)
+    .populate('users')
+    .exec(function (err, event) {
+      event.users.push(req.body.userId)
+      event.save().then(res.send(event))
     })
 })
 // add comment
 //remove comment
-//add event
-//join
 
+/////////////////////////////////////////////////
+router.get('/allposts', function (req, res) {
+  Post.find({}).exec(function (err, posts) {
+    res.send(posts)
+  })
+})
+router.get('/allusers', function (req, res) {
+  User.find({}).exec(function (err, users) {
+    res.send(users)
+  })
+})
+router.get('/allgardens', function (req, res) {
+  Garden.find({}).exec(function (err, gardens) {
+    res.send(gardens)
+  })
+})
 
 /////////////////////////////////////////////////////////////////////
 
