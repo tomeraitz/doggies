@@ -6,17 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>doggies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="profileStyle.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="loginStyle.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
 </head>
 
 <body>
     <div id="header">
         <h1 id="logo">doggies</h1>
+        <table>
+            <tr>
+                <td class="login"> <label>Email</label> </td>
+                <td class="login"> <label>Password</label> </td>
+            </tr>
+            <tr>
+                <td><input class="login-input" id="login-email" type="email"> </td>
+                <td><input class="login-input" id="login-password" type="password"></td>
+            </tr>
+        </table>
+        <button id="login-button">Log In</button>
     </div>
 
     <div id="middle">
+<<<<<<< HEAD
         <div></div>
         <div id="profile">
             <form id="profile-pic-name">
@@ -31,17 +43,26 @@
                     <img src="https://images.unsplash.com/photo-1474775621819-e5ed92c92461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb"
                         alt="" class="dog-img">
                     <p>dogName</p>
+=======
+        <img src="https://blog-cdn.dogbuddy.com/wp-content/uploads/2017/01/shetland-sheepdog-mobile-wallpaper.png" alt="">
+        <div id="signup">
+            <h1>Create a New Account</h1>
+            <p>It's totally free</p>
+            <table id="sign-up">
+                <td><input class="sign-up-input" id="first-Name" type="text" placeholder="First Name"></td>
+                <td><input id="last-name-signup" class="sign-up-input" type="text" placeholder="Last Name"></td>
+            </table>
 
-                </div>
-            </div>
-            <div id="communities">
-                <h3>Communities:</h3>
-                <div class="com-name">
-                    <i class="fas fa-map-marker-alt fa-lg mark-icon"></i>
-                    <p>communityName</p>
-                </div>
-            </div>
+            <table>
+                <td><input class="sign-up-input big-signup" id="email" type="email" placeholder="Email"></td>
+            </table>
+>>>>>>> bdcd0f754fe5a399642b0e6bf0b57016e67d3c25
 
+            <table>
+                <td><input class="sign-up-input big-signup" id="Password" type="password" placeholder="Password"></td>
+            </table>
+
+<<<<<<< HEAD
         </div>
 
         <div class="posts">
@@ -93,6 +114,24 @@
         <script src="profileManager.js"></script>
         <script src="RendererProfile.js"></script>
         <script src="profileMain.js"></script>
+=======
+            <table id="date-of-birth">
+                <td><input id="date-ob-inpt" class="sign-up-input big-signup" type="date" placeholder="yo"></td>
+            </table>
+
+            <table id="gender">
+                <td class="gender-name"><input type="radio" class="gender" value="Male" name="radio">Male</td>
+                <td class="gender-name"><input type="radio" class="gender" value="Female" name="radio">Female</td>
+                <td class="gender-name"><input type="radio" class="gender" value="Other" name="radio">Other</td>
+            </table>
+            <table>
+                <td><button id="signup-button">SignUp</button></td>
+            </table>
+        </div>
+    </div>
+    <script src="RegisterManager.js"></script>
+    <script src="mainRegister.js"></script>
+>>>>>>> bdcd0f754fe5a399642b0e6bf0b57016e67d3c25
 </body>
 
 </html>
