@@ -34,7 +34,7 @@ $("body").on("click" , ".join-hour" ,async function(){
 
 // Search for cities
 $("body").on("click","#search-icon",async function(){
-    let value = $("#search-inpt").val()
+    let value = $(".search-inpt").val()
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
      render.map.remove()
      render.buildMap(result[0].lat, result[0].lon)
