@@ -1,3 +1,9 @@
+//////////////////////////////////
+// FIX REOMOVE POST AND COMMENT!
+// UPLOAD IMAGE ROUTES        
+//////////////////////////////////
+
+
 const express = require('express')
 const router = express.Router()
 const request = require('request')
@@ -37,7 +43,7 @@ router.post('/user', async function (req, res) {
   }
 })
 //log in
-router.get('/login', async function (req, res) {
+router.post('/login', async function (req, res) {
   console.log("someone is loging in")
   console.log(req.body)
   if (req.body.email && req.body.password)
@@ -48,12 +54,12 @@ router.get('/login', async function (req, res) {
       res.send(user._id)
     } else
     {
-      res.send("password is wrong")
+      res.send()
     }
 
   } else
   {
-    res.send("login data is wrong...")
+    res.send(null)
   }
 })
 //get all user info
@@ -183,14 +189,14 @@ router.post('/comment/:userId/:postId', async function (req, res) {
   res.send(comment)
 })
 
-
 //remove comment
 // router.delete('/comment/:userId/:commentId', async function (req, res) {
 //   const comment = await Comment.findById(req.params.commentId)
 
 // })
 
-/////////////////////////////////////////////////
+
+////////////////////////////////////////////////////
 router.get('/allposts', function (req, res) {
   Post.find({}).exec(function (err, posts) {
     res.send(posts)
@@ -206,7 +212,6 @@ router.get('/allgardens', function (req, res) {
     res.send(gardens)
   })
 })
-
 /////////////////////////////////////////////////////////////////////
 
 module.exports = router

@@ -1,6 +1,15 @@
-const manger = new RegisterManager()
+const manager = new RegisterManager()
 
-$("body").on("click" , "#signup-button" ,async function(){
+const inputErr = function () {
+    console.log("input err")
+    $("#first-Name").addClass("input-err")
+    $("#last-name-signup").addClass("input-err")
+    $("#email").addClass("input-err")
+    $("#Password").addClass("input-err")
+    $("#gender").addClass("input-err")
+    $("#date-ob-inpt").addClass("input-err")
+}
+$("body").on("click", "#signup-button", async function () {
     let firstName = $("#first-Name").val()
     let lastName = $("#last-name-signup").val()
     let email = $("#email").val()
@@ -16,17 +25,35 @@ $("body").on("click" , "#signup-button" ,async function(){
         gender: gender,
         birthday: brith,
     }
-    await manger.firstRegister(user)
-    window.location.href = "home.html"
+    console.log(user)
+    if (firstName && lastName && email && password)
+    {
+        console.log(user)
+        await manager.firstRegister(user)
+        window.location.href = "home.html"
+    } else
+    {
+        console.log("calling input err")
+        inputErr()
+    }
 })
 
-$("body").on("click" , "#login-button" , async function(){
+$("body").on("click", "#login-button", async function () {
     let email = $("#login-email").val()
-    let password =  $("#login-password").val()
-    let user = {
+    let password = $("#login-password").val()
+    const user = {
         email: email,
         password: password,
     }
-    await manger.login(user)
-    window.location.href = "home.html"
+    console.log(user)
+    const result = await manager.login(user)
+    console.log(result)
+    if (result)
+    {
+        window.location.href = "home.html"
+    } else
+    {
+        $("#login-email").addClass("input-err")
+        $("#login-password").addClass("input-err")
+    }
 })
