@@ -33,11 +33,11 @@ router.post('/user', async function (req, res) {
     res.send(newUser)
   } else
   {
-    res.send("this email belongs to user")
+    res.send()
   }
 })
 //log in
-router.put('/login', async function (req, res) {
+router.post('/login', async function (req, res) {
   console.log("someone is loging in")
   console.log(req.body)
   if (req.body.email && req.body.password)
