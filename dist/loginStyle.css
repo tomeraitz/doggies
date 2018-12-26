@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #97D6E1;
+}
+
+/* login page style */
+
+#header {
+    margin: 0;
+    height: 10%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr 1fr;
+
+}
+
+#logo {
+    font-family: 'Varela Round', sans-serif;
+    align-self: center;
+    font-size: 7vh;
+    color: #ffffff;
+    margin-left: 20%;
+}
+
+#header > table {
+    align-self: center;
+}
+
+.login {
+    font-size: 14px;
+    color: #ffffff;
+    margin-left: 1vw;
+}
+
+.login > label {
+    margin-left: 1vw;
+}
+
+.login-input {
+    border: none;
+    border-radius: 5px;
+    margin-left: 1vw;
+    height: 3vh;
+}
+
+#login-button {
+    justify-self: start;
+    align-self: center;
+    margin-top: 16%;
+    margin-left: 1vw;
+    border: none;
+    border-radius: 5px;
+    height: 20%;
+    width: 5vw;
+    background-color: #EAEFBD;
+
+}
+
+#middle {
+    display: grid;
+    grid-template-columns: 53% 32%;
+}
+
+#middle > img {
+    height: 80vh;
+    justify-self: center;
+    align-self: center;
+}
+
+#signup {
+    justify-self: center;
+}
+
+#signup > table {
+    margin-bottom: 1vh;
+}
+
+#signup > h1 {
+    margin-bottom: 0;
+    margin-top: 1vh;
+    font-size: 219%;
+    color: #3B413C;
+}
+
+#signup > p {
+    color: #3B413C;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 4vh;
+}
+
+.sign-up-input {
+    border: none;
+    margin: 0;
+    border-radius: 5px;
+    padding-left: 1vw;
+    height: 5vh;
+    width: 97%;
+}
+
+.sign-up-input::placeholder {
+    color: #3B413C;
+}
+
+.big-signup {
+    width: 217%;
+}
+
+#last-name-signup {
+    margin-left: 1vw;
+}
+
+#gender {
+    border-radius: 5px;
+}
+
+.gender-name {
+    color: #3B413C;
+}
+
+#gender > input {
+    height: 2vh;
+}
+
+#date-ob-inpt {
+    width: 241%;
+    text-align: left;
+    text-transform: uppercase;
+    color: #3B413C;
+}
+
+#signup-button {
+    border: none;
+    border-radius: 5px;
+    height: 5vh;
+    width: 8vw;
+    background-color: #EAEFBD;
+    color: #3B413C;
+}
