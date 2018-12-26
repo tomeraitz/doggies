@@ -51,7 +51,7 @@ body {
 #profile {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
-    background-color: #eee;
+    background-color: #fff;
     height: 80vh;
     border-radius: 5px;
 }
@@ -62,8 +62,16 @@ body {
 
 #profile-pic-name > p {
     justify-self: center;
-    color: #3B413C;
+    color: #3B413C;  
+}
+
+.username-p {
+    margin: 1vh 0 0 0;
     font-size: 3vh;
+}
+
+.email-p {
+    margin: 0
 }
 
 .user-profile-img {
@@ -71,7 +79,7 @@ body {
     border-radius: 50%;
     width: 20vh;
     justify-self: center;
-    border: #fff solid 2px
+    border: #eee solid 2px
 }
 
 #dogs {
@@ -111,11 +119,21 @@ body {
 }
 
 /* POSTS STYLE */
-
 .posts {
     display: grid;
-    margin-bottom: 3vh;
-    margin-left: 3vh;
+    grid-template-columns: 1fr 17fr 1fr;
+}
+
+#new-post {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    height: 5vh;
+}
+
+#post-button {
+    border: none;
+    border-radius: 5px;
+    background-color: #EAEFBD;
 }
 
 .single-post {
@@ -124,15 +142,31 @@ body {
     background-color: #fff;
     border-radius: 5px;
     height: fit-content;
+    padding-bottom: 1vh;
+    margin-bottom: 2vh;
 }
 
 .username-post {
-    margin-top: 2vh;
+    margin-top: 3vh;
 }
 
-.username-post > span {
+.user-post {
     margin-left: 1vh;
     color: #3B413C;
+    font-size: 108%;
+}
+
+.delete-post-button {
+    float: right;
+    border: none;
+    background: none;
+    color: #3B413C;
+    cursor: pointer;
+}
+
+.community-post {
+    font-size: 65%;
+    color: #bccc34;
 }
 
 .title > h3 {
@@ -157,16 +191,17 @@ body {
     margin: 0;
 }
 
-.comment-table {
-    width: 100%
+.comment-div {
+    display: grid;
+    grid-template-columns: 13fr 1fr;
+    height: 4vh;
 }
 
 .comment-inpt {
     border: none;
     border-radius: 5px;
-    width: 100%;
-    height: 4vh;
-    background-color: #eee
+    background-color: #eee;
+    padding-left: 1vw;
 }
 
 .comment-button {
@@ -174,8 +209,8 @@ body {
     border-radius: 5px;
     background-color: #EAEFBD;
     color: #3B413C;
-    width: 7vw;
-    height: 4vh;
+    width: fit-content;
+    margin-left: 1vh;
 }
 
 .td-button {
