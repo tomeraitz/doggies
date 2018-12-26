@@ -1,15 +1,20 @@
 const render = new Renderer()
 const manger = new homeManager()
 
-// render.map.remove()
+
+const getAllgardens = async function(){
+    await manger.getGaedens();
+    manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name))
+}
+
+// Open a defulat map
+ window.onload = function() {
     render.buildMap(32.109333,34.855499)
+    render.addMarker(32.109333 , 34.855499) 
+    getAllgardens()
+ }
 
-// window.onload = function() {
-    
-//     render.addMarker(32.109333 , 34.855499) 
-// }
-
-
+// Add new event to calendar
 $("body").on("click" , ".join-hour" ,async function(){
     let hour = $(this).siblings(".add-user").find("span").text()
     let id = manger.UserId
@@ -27,6 +32,7 @@ $("body").on("click" , ".join-hour" ,async function(){
     
 })
 
+// Search for cities
 $("body").on("click","#search-icon",async function(){
     let value = $("#search-inpt").val()
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
@@ -34,18 +40,10 @@ $("body").on("click","#search-icon",async function(){
      render.buildMap(result[0].lat, result[0].lon)
   })
   
-  $("body").on("click" , ".openPosts", function(){
-    document.getElementById('posts').innerHTML = "<div style='width: 100%; height: 200px; background-color: black;'></div>"
-  })
+//   $("body").on("click" , ".openPosts", function(){
+//     document.getElementById('posts').innerHTML = "<div style='width: 100%; height: 200px; background-color: black;'></div>"
+//   })
 
-  render.map.on('click',e =>{
-    let Newlat = e.latlng.lat;
-    let Newlon = e.latlng.lng;
-    console.log(Newlat)
-    render.addMarker(Newlat , Newlon)
-});
 
-$("body").on("click" , ".leaflet-marker-pane"){
-    
-}
+
 
