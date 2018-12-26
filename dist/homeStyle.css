@@ -92,7 +92,6 @@ body {
 #comunities {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 2vh 0 1vh 0;
 }
 
 #map-icon {
