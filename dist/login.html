@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
 </head>
+
 <body>
     <div id="header">
         <h1 id="logo">doggies</h1>
@@ -24,16 +26,16 @@
         </table>
         <button id="login-button">Log In</button>
     </div>
-    
+
     <div id="middle">
-        <img src="https://blog-cdn.dogbuddy.com/wp-content/uploads/2017/01/shetland-sheepdog-mobile-wallpaper.png" alt="">
+        <img id="dog-image" src="" alt="">
         <div id="signup">
             <h1>Create a New Account</h1>
             <p>It's totally free</p>
 
             <table id="sign-up">
                 <td><input class="sign-up-input" id="first-Name" type="text" placeholder="First Name"></td>
-                <td><input id="last-name-signup"  class="sign-up-input" type="text" placeholder="Last Name"></td>
+                <td><input id="last-name-signup" class="sign-up-input" type="text" placeholder="Last Name"></td>
             </table>
 
             <table>
@@ -50,8 +52,8 @@
 
             <table id="gender">
                 <td class="gender-name"><input type="radio" class="gender" value="Male" name="radio">Male</td>
-                <td class="gender-name"><input type="radio" class="gender"  value="Female" name="radio">Female</td>
-                <td class="gender-name"><input type="radio" class="gender"  value="Other" name="radio">Other</td>
+                <td class="gender-name"><input type="radio" class="gender" value="Female" name="radio">Female</td>
+                <td class="gender-name"><input type="radio" class="gender" value="Other" name="radio">Other</td>
             </table>
             <table>
                 <td><button id="signup-button">SignUp</button></td>
@@ -62,4 +64,5 @@
     <script src="RegisterManager.js"></script>
     <script src="mainRegister.js"></script>
 </body>
+
 </html>

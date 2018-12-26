@@ -61,13 +61,14 @@ body {
 
 }
 
+/* MIDDLE STYLE */
 #middle {
     display: grid;
     grid-template-columns: 53% 32%;
 }
 
-#middle > img {
-    height: 80vh;
+#dog-image {
+    height: 50vh;
     justify-self: center;
     align-self: center;
 }
