@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const path = require('path')
 const api = require('./server/routes/api')
-
+const fileUpload = require('express-fileupload');
 
 
 
@@ -20,6 +20,9 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(fileUpload())
+
 app.use('/', api)
 
 

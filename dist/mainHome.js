@@ -1,5 +1,5 @@
 const render = new Renderer()
-const manger = new homeManager()
+const manager = new homeManager()
 
 
 const getAllgardens = async function(){
@@ -7,6 +7,7 @@ const getAllgardens = async function(){
     console.log(manger.markerFromDB)
     manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name , g._id))
 }
+
 
 // Open a defulat map
  window.onload = function() {
@@ -16,20 +17,21 @@ const getAllgardens = async function(){
 
 // Add new event to calendar
 $("body").on("click" , ".join-hour" ,async function(){
+
     let hour = $(this).siblings(".add-user").find("span").text()
-    let id = manger.UserId
+    let id = manager.UserId
     // add garden name
     let event = {
-        id : id,
-        hour : hour,
+        id: id,
+        hour: hour,
         //garden
     }
-    await manger.addEvent(event)
-    let result =  await manger.getEvents(/*gardenName*/)
+    await manager.addEvent(event)
+    let result = await manager.getEvents(/*gardenName*/)
     result.calendar.forEach(pic => {
-        render.renderGardenData(pic.users,eventID )
+        render.renderGardenData(pic.users, eventID)
     });
-    
+
 })
 
 // Search for cities
@@ -50,6 +52,7 @@ $("body").on("click","#search-icon",async function(){
   $("body").on("click" ,"#move-to-profile", function(){
     window.location.href = "profile.html"
   })
+
 
 
 
