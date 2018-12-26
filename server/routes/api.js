@@ -30,6 +30,7 @@ router.post('/user', async function (req, res) {
       password: req.body.password,
       gender: req.body.gender,
       birthday: req.body.birthday,
+      profilePic: "https://www.geogreen.co.uk/wp-content/uploads/2017/12/profile-icon.png"
     })
     await newUser.save()
     res.send(newUser)
@@ -218,6 +219,9 @@ router.post('/dog/:userId', async function (req, res) {
         return res.status(500).send(err)
       }
     })
+  } else
+  {
+    const fileName = "http://cdn.onlinewebfonts.com/svg/img_73823.png"
   }
 
   const dog = new Dog({
@@ -278,6 +282,27 @@ router.post('/upload/garden/:gardenId', function (req, res) {
   res.send(garden)
 })
 
+
+
+router.post('/upload/dog/:dogId', async function (req, res) {
+  if (Object.keys(req.files).length == 0)
+  {
+    res.status(400).send('No files were uploaded.');
+    return
+  }
+  const fileName = req.files.sampleFile.name + Math.floor(Math.random() * 9999999999999999999)
+  const sampleFile = req.files.sampleFile
+  const uploadPath = __dirname + '/dist/uploads/' + sampleFile.name
+  sampleFile.mv(uploadPath, function (err) {
+    if (err)
+    {
+      return res.status(500).send(err)
+    }
+  })
+  Dog.findByIdAndUpdate(req.params.dogId, { profilePic: fileName }).exec((err, dog) => {
+    res.send(dog)
+  })
+})
 ///////////////////////////////////////////////////////////////
 
 
