@@ -31,6 +31,7 @@ $("body").on("click", "#signup-button", async function () {
         console.log(user)
         const result = await manager.firstRegister(user)
         if (result == true)
+
         {
             window.location.href = "home.html"
         } else

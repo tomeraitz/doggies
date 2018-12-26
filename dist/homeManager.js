@@ -1,5 +1,6 @@
 class homeManager {
     constructor() {
+
           this.UserId = JSON.parse(sessionStorage.UserId)
           this.markerGeneral = []
           this.markerUser = []
@@ -12,8 +13,9 @@ class homeManager {
     //     this.markerFromDB.push(...gardens)
     //  }
 
-    async addEvent(event){
-       await $.post(`/event` , event)
+
+    async addEvent(event) {
+        await $.post(`/event`, event)
     }
 
     async getGaedens(){

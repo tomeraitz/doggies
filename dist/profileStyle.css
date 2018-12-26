@@ -64,7 +64,16 @@ body {
 #profile-pic-name > p {
     justify-self: center;
     color: #3B413C;
+
+}
+
+#username-p {
     font-size: 3vh;
+    margin: 1vh 0 0 0;
+}
+
+#email-p {
+    margin: 0;
 }
 
 .user-profile-img {
@@ -112,11 +121,22 @@ body {
 }
 
 /* POSTS STYLE */
-
 .posts {
     display: grid;
-    margin-bottom: 3vh;
-    margin-left: 3vh;
+    grid-template-columns: 1fr 20fr 1fr;
+    margin-bottom: 2vh;
+}
+
+#new-post {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    height: 5vh;
+}
+
+#post-button {
+    border: none;
+    border-radius: 5px;
+    background-color: #EAEFBD;
 }
 
 .single-post {
@@ -125,15 +145,30 @@ body {
     background-color: #fff;
     border-radius: 5px;
     height: fit-content;
+    padding-bottom: 1vh;
 }
 
 .username-post {
-    margin-top: 2vh;
+    margin-top: 3vh;
 }
 
-.username-post > span {
+.user-post {
     margin-left: 1vh;
     color: #3B413C;
+    font-size: 108%;
+}
+
+.delete-post-button {
+    float: right;
+    border: none;
+    background: none;
+    color: #3B413C;
+    cursor: pointer;
+}
+
+.community-post {
+    font-size: 65%;
+    color: #bccc34;
 }
 
 .title > h3 {
@@ -150,7 +185,7 @@ body {
     border-radius: 5px;
     background-color: #eee;
     width: fit-content;
-    margin: 1% 0 1% 0;
+    margin: 2vh 0;
     padding: 1%;
 }
 
@@ -158,16 +193,17 @@ body {
     margin: 0;
 }
 
-.comment-table {
-    width: 100%
+.comment-div {
+    display: grid;
+    grid-template-columns: 13fr 1fr;
+    height: 5vh;
 }
 
 .comment-inpt {
     border: none;
     border-radius: 5px;
-    width: 100%;
-    height: 4vh;
-    background-color: #eee
+    background-color: #eee;
+    padding-left: 1vw;
 }
 
 .comment-button {
@@ -175,8 +211,8 @@ body {
     border-radius: 5px;
     background-color: #EAEFBD;
     color: #3B413C;
-    width: 7vw;
-    height: 4vh;
+    width: fit-content;
+    margin-left: 1vh;
 }
 
 .td-button {

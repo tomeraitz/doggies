@@ -1,5 +1,5 @@
 const render = new Renderer()
-const manger = new homeManager()
+const manager = new homeManager()
 
 const emptyClendar=function(){
     const collection = document.getElementsByClassName("event-span")
@@ -16,6 +16,7 @@ const getAllgardens = async function(){
     manger.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
 
+
 // Open a defulat map
  window.onload = function() {
     render.buildMap(32.109333,34.855499)
@@ -24,21 +25,22 @@ const getAllgardens = async function(){
 
 // Add new event to calendar
 $("body").on("click" , ".join-hour" ,async function(){
+
     let hour = $(this).siblings(".add-user").find("span").text()
-    console.log(hour)
-    let id = manger.UserId
+    let id = manager.UserId
+
     // add garden name
     let event = {
-        id : id,
-        hour : hour,
+        id: id,
+        hour: hour,
         //garden
     }
-    await manger.addEvent(event)
-    let result =  await manger.getEvents(/*gardenName*/)
+    await manager.addEvent(event)
+    let result = await manager.getEvents(/*gardenName*/)
     result.calendar.forEach(pic => {
-        render.renderGardenData(pic.users,eventID )
+        render.renderGardenData(pic.users, eventID)
     });
-    
+
 })
 
 $("body").on("click" , ".show-details" , function(){
@@ -67,3 +69,5 @@ $("body").on("click","#search-icon",async function(){
 
 
   emptyClendar()
+
+
