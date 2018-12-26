@@ -3,6 +3,7 @@ class homeManager {
           this.UserId = JSON.parse(sessionStorage.UserId)
           this.markerGeneral = []
           this.markerUser = []
+          this.garden = ""
     }
 
     // async getEvents(gardenName){
@@ -21,7 +22,7 @@ class homeManager {
         gardens.forEach(g => {
             let exist = false
             this.markerUser.forEach(e => {
-                if (e.id == g.id)
+                if (e._id == g._id)
                 {
                     exist = true
                 }
@@ -30,7 +31,10 @@ class homeManager {
             {
                 this.markerGeneral.push(g)
             }
+            exist = false
+
         })
+        
     }
 
     async joinCommunity(){

@@ -1,11 +1,17 @@
 const render = new Renderer()
 const manger = new homeManager()
 
+const emptyClendar=function(){
+    const collection = document.getElementsByClassName("event-span")
+    const calendar = Array.prototype.slice.call( collection )
+    calendar.forEach(e=>$(e).empty())
+}
 
 const getAllgardens = async function(){
     let user = await manger.getUserGardens();
     await manger.addUserGardens(user.gardens);
     await manger.getGaedens();
+    console.log(manger.markerGeneral)
     manger.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
     manger.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
@@ -19,6 +25,7 @@ const getAllgardens = async function(){
 // Add new event to calendar
 $("body").on("click" , ".join-hour" ,async function(){
     let hour = $(this).siblings(".add-user").find("span").text()
+    console.log(hour)
     let id = manger.UserId
     // add garden name
     let event = {
@@ -32,6 +39,11 @@ $("body").on("click" , ".join-hour" ,async function(){
         render.renderGardenData(pic.users,eventID )
     });
     
+})
+
+$("body").on("click" , ".show-details" , function(){
+    const gardenID = $(this).closest(".gardenName").data().id
+    manger.garden = gardenID
 })
 
 // Search for cities
@@ -54,4 +66,4 @@ $("body").on("click","#search-icon",async function(){
   })
 
 
-
+  emptyClendar()

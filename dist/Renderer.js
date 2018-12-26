@@ -3,9 +3,9 @@ class Renderer {
         this.map = "";
         
     }
-
+    
     // Renderer the gardens
-    renderGardenData(user, id) {
+    renderGardenData(garden, id) {
         $(`#${id}`).empty();
         const source = $('#events-template').html();
         let template = Handlebars.compile(source);
