@@ -14,8 +14,13 @@ body {
     height: 10%;
     width: 100%;
     display: grid;
-    grid-template-columns: 5fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
 
+}
+
+#header-position {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
 }
 
 #logo {
@@ -23,13 +28,17 @@ body {
     align-self: center;
     font-size: 7vh;
     color: #ffffff;
-    margin-left: 20%;
 }
 
 #header > table {
     align-self: center;
 }
 
+#username-table {
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+}
 
 #icon {
     color: #fff
@@ -39,6 +48,9 @@ body {
 .username {
     font-size: 20px;
     color: #ffffff;
+}
+
+.username > p {
     margin-left: 1vw;
 }
 
@@ -56,7 +68,7 @@ body {
     height: 6vh;
 }
 
-#search-inpt {
+.search-inpt {
     border: none;
     border-radius: 5px;
     width: 58vw;
@@ -67,7 +79,6 @@ body {
 
 #search-icon {
     display: grid;
-    background-color: #fff;
     border-radius: 5px;
     background-color: #EAEFBD;
 }
@@ -81,7 +92,6 @@ body {
 #comunities {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 2vh 0 1vh 0;
 }
 
 #map-icon {
@@ -92,16 +102,22 @@ body {
     z-index: 1;
 }
 
-#calendar {
+.calendar {
     background-color: #fff;
-    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     height: 33vh;
-    overflow: scroll;
-    overflow-x: hidden;
-    z-index: 99;
+    overflow: hidden;
+    
+}
+
+.calendar:hover {
+    scrollbar-face-color: #EAEFBD;
+    overflow-y: visible;
 }
 
 #day > h2 {
+    font-size: 175%;
     margin-left: 2vw;
     color: #3B413C;
 }
@@ -118,6 +134,7 @@ body {
 .join-hour {
     justify-self: center;
     align-self: center;
+    cursor: pointer;
 }
 
 .add-user {
@@ -138,7 +155,19 @@ body {
 .posts {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    margin: 3vh 0;
+    margin: 2vh 0;
+}
+
+#new-post {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    height: 5vh;
+}
+
+#post-button {
+    border: none;
+    border-radius: 5px;
+    background-color: #EAEFBD;
 }
 
 .single-post {
@@ -147,15 +176,31 @@ body {
     background-color: #fff;
     border-radius: 5px;
     height: fit-content;
+    margin-top: 2vh;
+    padding-bottom: 1vh;
 }
 
 .username-post {
-    margin-top: 2vh;
+    margin-top: 3vh;
 }
 
-.username-post > span {
+.user-post {
     margin-left: 1vh;
     color: #3B413C;
+    font-size: 108%;
+}
+
+.delete-post-button {
+    float: right;
+    border: none;
+    background: none;
+    color: #3B413C;
+    cursor: pointer;
+}
+
+.community-post {
+    font-size: 65%;
+    color: #bccc34;
 }
 
 .title > h3 {
@@ -180,16 +225,17 @@ body {
     margin: 0;
 }
 
-.comment-table {
-    width: 100%
+.comment-div {
+    display: grid;
+    grid-template-columns: 13fr 1fr;
+    height: 4vh;
 }
 
 .comment-inpt {
     border: none;
     border-radius: 5px;
-    width: 100%;
-    height: 4vh;
-    background-color: #eee
+    background-color: #eee;
+    padding-left: 1vw;
 }
 
 .comment-button {
@@ -197,11 +243,22 @@ body {
     border-radius: 5px;
     background-color: #EAEFBD;
     color: #3B413C;
-    width: 7vw;
-    height: 4vh;
+    width: fit-content;
+    margin-left: 1vh;
 }
 
 .td-button {
     width: 5vw;
 }
 
+.input-pop-up{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    z-index: 9999;
+    opacity: 0.9;
+    display: none;
+}

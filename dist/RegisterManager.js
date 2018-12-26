@@ -10,8 +10,11 @@ class RegisterManager {
             return false
         } else
         {
-            sessionStorage.UserId = JSON.stringify(data._id)
-            this.UserId = data._id
+
+            sessionStorage.UserId = JSON.stringify(response._id)
+            this.UserId = response._id
+            return true
+
         }
     }
 
