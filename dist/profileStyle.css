@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #97D6E1;
+}
+
+/* HEADER STYLE */
+#header {
+    margin: 0;
+    height: 10%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
+
+}
+
+#logo {
+    font-family: 'Varela Round', sans-serif;
+    align-self: center;
+    font-size: 7vh;
+    color: #ffffff;
+    margin-left: 20%;
+}
+
+#header > table {
+    align-self: center;
+}
+
+
+#icon {
+    color: #fff
+
+}
+
+.username {
+    font-size: 20px;
+    color: #ffffff;
+    margin-left: 1vw;
+}
+
+/* MIDDLE STYLE */
+#middle {
+    display: grid;
+    grid-template-columns: 1fr 2fr 5fr 1fr;
+}
+
+#profile {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    background-color: #eee;
+    height: 80vh;
+    border-radius: 5px;
+}
+
+#profile-pic-name {
+    display: grid;
+}
+
+#profile-pic-name > p {
+    justify-self: center;
+    color: #3B413C;
+    font-size: 3vh;
+}
+
+.user-profile-img {
+    margin-top: 4vh;
+    border-radius: 50%;
+    width: 20vh;
+    justify-self: center;
+    border: #fff solid 2px
+}
+
+#dogs {
+    margin-left: 2vw;
+}
+
+.dog-name {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#dogs > h3 {
+    color: #3B413C;
+}
+
+.dog-img {
+    border-radius: 50%;
+    width: 8vh;
+}
+
+#communities {
+    margin-left: 2vw;
+}
+
+#communities > h3 {
+    color: #3B413C;
+}
+
+.com-name {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+
+}
+
+.mark-icon {
+    align-self: center;
+}
+
+/* POSTS STYLE */
+
+.posts {
+    display: grid;
+    margin-bottom: 3vh;
+    margin-left: 3vh;
+}
+
+.single-post {
+    display: grid;
+    grid-template-columns: 5% 90%;
+    background-color: #fff;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.username-post {
+    margin-top: 2vh;
+}
+
+.username-post > span {
+    margin-left: 1vh;
+    color: #3B413C;
+}
+
+.title > h3 {
+    margin: 0;
+    color: #3B413C;
+}
+
+.comments {
+    border-top: 1px solid #3B413C;
+    margin: 1% 0;
+}
+
+.single-comment {
+    border-radius: 5px;
+    background-color: #eee;
+    width: fit-content;
+    margin: 1% 0 1% 0;
+    padding: 1%;
+}
+
+.single-comment > p {
+    margin: 0;
+}
+
+.comment-table {
+    width: 100%
+}
+
+.comment-inpt {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 4vh;
+    background-color: #eee
+}
+
+.comment-button {
+    border: none;
+    border-radius: 5px;
+    background-color: #EAEFBD;
+    color: #3B413C;
+    width: 7vw;
+    height: 4vh;
+}
+
+.td-button {
+    width: 5vw;
+}
