@@ -24,20 +24,27 @@
         <button class="save">Save</button>
         <button class="cancel">Cancel</button>
     </div>
+
     <div id="header">
-        <h1 id="logo">doggies</h1>
-        <table>
-            <tr>
-                <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
-                <td class="username"> <label>Username</label> </td>
-            </tr>
-        </table>
+        <div></div>
+        <div id="header-position">
+            <h1 id="logo">doggies</h1>
+            <table id="username-table">
+                <tr id="move-to-profile">
+                    <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
+                    <td class="username">
+                        <p>Username</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div></div>
     </div>
 
     <div id="middle">
         <div></div>
         <div id="map-search">
-            <input id="search-inpt" type="text" placeholder="Search dog park...">
+            <input class="search-inpt" type="text" placeholder="Search dog park...">
             <div id="search-icon"><i class="fas fa-search fa-lg"></i></div>
         </div>
         <div></div>
@@ -45,7 +52,7 @@
         <div id="comunities">
             <div id="map">
             </div>
-            <div id="calendar">
+            <div class="calendar">
                 <div id="day">
                     <h2>Today</p>
                 </div>
@@ -427,7 +434,7 @@
         <script id="events-templat" type="text/x-handlebars-template">
             {{#each user}}
                     <img class="user-calendar-img" src="{{user.profilePic}}" alt="username">
-                {{/each}}
+            {{/each}}
                 
             </script>
 
@@ -436,11 +443,19 @@
 
     <div class="posts">
         <div></div>
+        <div id="new-post">
+            <input class="search-inpt" type="text" placeholder="What's new?">
+            <button id="post-button">Post</button>
+        </div>
+        <div></div>
+        <div></div>
         <div class="single-post">
             <div></div>
             <div class="username-post">
                 <i class="fas fa-user-circle fa-2x"></i>
-                <span>username</span>
+                <span class="user-post">username</span>
+                <span class="community-post">(Florentin, TLV)</span>
+                <button class="delete-post-button"><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
             <div class="title">
@@ -459,14 +474,13 @@
                     <p>Can't today my bruh</p>
                 </div>
 
-                <table class="comment-table">
-                    <td><input class="comment-inpt" type="text"></td>
+                <div class="comment-div">
+                    <td><input class="comment-inpt" type="text" placeholder="Write a comment..."></td>
                     <td class="td-button"><button class="comment-button">Comment</button></td>
-                </table>
+                </div>
             </div>
         </div>
     </div>
-    <script src="open.js"></script>
     <script src="homeManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="mainHome.js"></script>

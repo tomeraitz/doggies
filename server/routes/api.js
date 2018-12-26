@@ -33,11 +33,11 @@ router.post('/user', async function (req, res) {
     res.send(newUser)
   } else
   {
-    res.send("this email belongs to user")
+    res.send()
   }
 })
 //log in
-router.get('/login', async function (req, res) {
+router.post('/login', async function (req, res) {
   console.log("someone is loging in")
   console.log(req.body)
   if (req.body.email && req.body.password)
@@ -48,12 +48,13 @@ router.get('/login', async function (req, res) {
       res.send(user._id)
     } else
     {
-      res.send("password is wrong")
+      res.send()
     }
 
   } else
   {
-    res.send("login data is wrong...")
+
+    res.send(null)
   }
 })
 //get all user info
@@ -80,11 +81,11 @@ router.post('/garden/:userId', async function (req, res) {
 })
 //join comunity
 router.put('/user/garden/:userId/:gardenId', async function (req, res) {
-  const user = await User.findById(req.params.userId).populate('gardens')
-  const garden = await Garden.findById(req.params.gardenId)
+  const user = await User.findById(req.params.userId).populate('gardens').exec()
+  const garden = await Garden.findById(req.params.gardenId).populate('posts').exec()
   await user.gardens.push(garden)
   await user.save()
-  res.send(user)
+  res.send(garden)
 })
 //leave comunity
 router.delete('/user/garden/:userId/:gardenId', function (req, res) {
@@ -206,6 +207,9 @@ router.get('/allgardens', function (req, res) {
     res.send(gardens)
   })
 })
+
+///////////////////////////////////////////////////////////////
+
 
 /////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 body {
     margin: 0;
     padding: 0;
@@ -16,7 +15,6 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 5fr 1fr 1fr 1fr;
-
 }
 
 #logo {
@@ -27,7 +25,7 @@ body {
     margin-left: 20%;
 }
 
-#header > table {
+#header>table {
     align-self: center;
 }
 
@@ -37,7 +35,7 @@ body {
     margin-left: 1vw;
 }
 
-.login > label {
+.login>label {
     margin-left: 1vw;
 }
 
@@ -58,7 +56,6 @@ body {
     height: 20%;
     width: 5vw;
     background-color: #EAEFBD;
-
 }
 
 #middle {
@@ -66,7 +63,7 @@ body {
     grid-template-columns: 53% 32%;
 }
 
-#middle > img {
+#middle>img {
     height: 80vh;
     justify-self: center;
     align-self: center;
@@ -76,18 +73,18 @@ body {
     justify-self: center;
 }
 
-#signup > table {
+#signup>table {
     margin-bottom: 1vh;
 }
 
-#signup > h1 {
+#signup>h1 {
     margin-bottom: 0;
     margin-top: 1vh;
     font-size: 219%;
     color: #3B413C;
 }
 
-#signup > p {
+#signup>p {
     color: #3B413C;
     margin-top: 5px;
     margin-left: 5px;
@@ -123,7 +120,7 @@ body {
     color: #3B413C;
 }
 
-#gender > input {
+#gender>input {
     height: 2vh;
 }
 
@@ -141,4 +138,8 @@ body {
     width: 8vw;
     background-color: #EAEFBD;
     color: #3B413C;
+}
+
+.input-err {
+    border: 2px dotted rgb(197, 34, 34);
 }

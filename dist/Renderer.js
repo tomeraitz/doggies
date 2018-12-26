@@ -17,7 +17,7 @@ class Renderer {
     buildMap(lat,lon)  {
         $('#map').empty();
         $('#map').append("<div id='mapDetials' style='width: 100%; height: 100%;'></div>")
-        this.map = L.map('map').setView([lat, lon], 13);
+        this.map = L.map('map').setView([lat, lon], 10);
 
         // set map tiles source
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -55,6 +55,14 @@ class Renderer {
                                             <button class="join-community">Join Garden</button>
                                          </div>`)
         .addTo(this.map)
+    }
+
+    renderPostsData(user, id) {
+        $(`#${id}`).empty();
+        const source = $('#events-template').html();
+        let template = Handlebars.compile(source);
+        let newHTML = template({user});
+        $(`#${id}`).append(newHTML)
     }
 }
 
