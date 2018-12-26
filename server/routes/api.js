@@ -6,8 +6,8 @@ const Garden = require('../models/garden')
 const Post = require('../models/post')
 const Comment = require('../models/comment')
 const Event = require('../models/event')
-
 // const moment = require('moment')
+
 //remove user 
 router.delete("/user/:userId", function (req, res) {
   User.findByIdAndDelete(req.params.userId).exec(function (err, user) {
@@ -68,7 +68,8 @@ router.get('/user/:userId', function (req, res) {
 router.post('/garden/:userId', async function (req, res) {
   const newGarden = new Garden({
     name: req.body.name,
-    location: req.body.location,
+    lat: req.body.lat,
+    lon: req.body.lon,
     gardenPic: req.body.pic
   })
   await newGarden.save()
@@ -143,9 +144,7 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
 //   res.send("removed")
 // })
 
-
-
-//add event
+//create and join event
 router.post('/event/', async function (req, res) {
   const event = new Event({
     garden: req.body.gardenId,
@@ -170,7 +169,26 @@ router.put('/event/', async function (req, res) {
     })
 })
 // add comment
+router.post('/comment/:userId/:postId', async function (req, res) {
+  const comment = new Comment({
+    user: req.params.userId,
+    post: req.params.postId,
+    text: req.body.text,
+    date: req.body.date
+  })
+  console.log(`new comment: ${comment.text}`)
+  await comment.save()
+  await Post.findByIdAndUpdate(req.params.postId,
+    { $push: { comments: comment } })
+  res.send(comment)
+})
+
+
 //remove comment
+// router.delete('/comment/:userId/:commentId', async function (req, res) {
+//   const comment = await Comment.findById(req.params.commentId)
+
+// })
 
 /////////////////////////////////////////////////
 router.get('/allposts', function (req, res) {
