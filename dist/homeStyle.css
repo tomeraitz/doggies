@@ -205,3 +205,14 @@ body {
     width: 5vw;
 }
 
+.input-pop-up{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    background-color: grey;
+    color: white;
+    z-index: 9999;
+    opacity: 0.9;
+    display: none;
+}
