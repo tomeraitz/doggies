@@ -1,4 +1,10 @@
 class RendererProfile {
+    constructor() {
+        Handlebars.registerHelper('toUpper', function (str) {
+            return str.replace(/^\w/, c => c.toUpperCase());
+        });
+    }
+
     renderProfile(data) {
         $("#profile").empty();
         let source = $("#profile-template").html();
@@ -6,4 +12,5 @@ class RendererProfile {
         let newHTML = template(data);
         $("#profile").append(newHTML);
     }
+
 }
