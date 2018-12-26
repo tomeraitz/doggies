@@ -37,7 +37,7 @@ class Renderer {
                     lon: Newlon,
                 }
                 $.post(`/garden/${manger.UserId}` , garden)
-                render.addMarker(Newlat , Newlon, gardenName)
+                render.addUserMarker(Newlat , Newlon, gardenName)
                 getAllgardens()
                 $(".input-pop-up").hide();
             })
@@ -49,7 +49,23 @@ class Renderer {
         })
     }
 
-    addMarker(lat, lon , gardenName, id){
+    addUserMarker(lat, lon , gardenName, id){
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+          });
+        L.marker([lat, lon], {icon: greenIcon}).bindPopup(`<div data-id="${id}" class="gardenName">
+                                            <p>${gardenName}</p>
+                                            <button class="show-details">Show Details</button>
+                                         </div>`)
+        .addTo(this.map)
+    }
+
+    addGenralMarker(lat, lon , gardenName, id){
         L.marker([lat, lon]).bindPopup(`<div data-id="${id}" class="gardenName">
                                             <p>${gardenName}</p>
                                             <button class="join-community">Join Garden</button>

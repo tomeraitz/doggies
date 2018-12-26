@@ -3,9 +3,11 @@ const manger = new homeManager()
 
 
 const getAllgardens = async function(){
+    let user = await manger.getUserGardens();
+    await manger.addUserGardens(user.gardens);
     await manger.getGaedens();
-    console.log(manger.markerFromDB)
-    manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name , g._id))
+    manger.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
+    manger.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
 
 // Open a defulat map
@@ -41,9 +43,9 @@ $("body").on("click","#search-icon",async function(){
      getAllgardens()
   })
   
-  $("body").on("click" , ".join-community", function(){
-        $
-  })
+//   $("body").on("click" , ".join-community", function(){
+//         $(this)
+//   })
 
   // move to profile
 
