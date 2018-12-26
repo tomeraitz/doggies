@@ -1,5 +1,5 @@
 const render = new Renderer()
-const manger = new homeManager()
+const manager = new homeManager()
 
 // render.map.remove()
 render.buildMap(32.109333, 34.855499)
@@ -12,15 +12,15 @@ render.buildMap(32.109333, 34.855499)
 
 $("body").on("click", ".join-hour", async function () {
     let hour = $(this).siblings(".add-user").find("span").text()
-    let id = manger.UserId
+    let id = manager.UserId
     // add garden name
     let event = {
         id: id,
         hour: hour,
         //garden
     }
-    await manger.addEvent(event)
-    let result = await manger.getEvents(/*gardenName*/)
+    await manager.addEvent(event)
+    let result = await manager.getEvents(/*gardenName*/)
     result.calendar.forEach(pic => {
         render.renderGardenData(pic.users, eventID)
     });

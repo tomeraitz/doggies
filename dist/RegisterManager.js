@@ -4,9 +4,15 @@ class RegisterManager {
     }
 
     async firstRegister(user) {
-        let data = await $.post(`/user`, user)
-        sessionStorage.UserId = JSON.stringify(data._id)
-        this.UserId = data._id
+        const response = await $.post(`/user`, user)
+        if (!response)
+        {
+            return false
+        } else
+        {
+            sessionStorage.UserId = JSON.stringify(data._id)
+            this.UserId = data._id
+        }
     }
 
     async login(user) {

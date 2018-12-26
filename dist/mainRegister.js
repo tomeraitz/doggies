@@ -29,8 +29,14 @@ $("body").on("click", "#signup-button", async function () {
     if (firstName && lastName && email && password)
     {
         console.log(user)
-        await manager.firstRegister(user)
-        window.location.href = "home.html"
+        const result = await manager.firstRegister(user)
+        if (result)
+        {
+            window.location.href = "home.html"
+        } else
+        {
+            alert("This mail is already taken")
+        }
     } else
     {
         console.log("calling input err")
