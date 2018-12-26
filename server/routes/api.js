@@ -1,9 +1,3 @@
-//////////////////////////////////
-// FIX REOMOVE POST AND COMMENT!
-// UPLOAD IMAGE ROUTES        
-//////////////////////////////////
-
-
 const express = require('express')
 const router = express.Router()
 const request = require('request')
@@ -43,7 +37,7 @@ router.post('/user', async function (req, res) {
   }
 })
 //log in
-router.post('/login', async function (req, res) {
+router.put('/login', async function (req, res) {
   console.log("someone is loging in")
   console.log(req.body)
   if (req.body.email && req.body.password)
@@ -86,11 +80,11 @@ router.post('/garden/:userId', async function (req, res) {
 })
 //join comunity
 router.put('/user/garden/:userId/:gardenId', async function (req, res) {
-  const user = await User.findById(req.params.userId).populate('gardens')
-  const garden = await Garden.findById(req.params.gardenId)
+  const user = await User.findById(req.params.userId).populate('gardens').exec()
+  const garden = await Garden.findById(req.params.gardenId).populate('posts').exec()
   await user.gardens.push(garden)
   await user.save()
-  res.send(user)
+  res.send(garden)
 })
 //leave comunity
 router.delete('/user/garden/:userId/:gardenId', function (req, res) {
@@ -189,14 +183,14 @@ router.post('/comment/:userId/:postId', async function (req, res) {
   res.send(comment)
 })
 
+
 //remove comment
 // router.delete('/comment/:userId/:commentId', async function (req, res) {
 //   const comment = await Comment.findById(req.params.commentId)
 
 // })
 
-
-////////////////////////////////////////////////////
+/////////////////////////////////////////////////
 router.get('/allposts', function (req, res) {
   Post.find({}).exec(function (err, posts) {
     res.send(posts)
@@ -212,6 +206,8 @@ router.get('/allgardens', function (req, res) {
     res.send(gardens)
   })
 })
+///////////////////////////////////////////////////////////////
+
 /////////////////////////////////////////////////////////////////////
 
 module.exports = router
