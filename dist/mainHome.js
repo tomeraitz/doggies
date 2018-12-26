@@ -1,11 +1,19 @@
 const render = new Renderer()
 const manager = new homeManager()
 
+const emptyClendar=function(){
+    const collection = document.getElementsByClassName("event-span")
+    const calendar = Array.prototype.slice.call( collection )
+    calendar.forEach(e=>$(e).empty())
+}
 
 const getAllgardens = async function(){
+    let user = await manger.getUserGardens();
+    await manger.addUserGardens(user.gardens);
     await manger.getGaedens();
-    console.log(manger.markerFromDB)
-    manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name , g._id))
+    console.log(manger.markerGeneral)
+    manger.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
+    manger.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
 
 
@@ -20,6 +28,7 @@ $("body").on("click" , ".join-hour" ,async function(){
 
     let hour = $(this).siblings(".add-user").find("span").text()
     let id = manager.UserId
+
     // add garden name
     let event = {
         id: id,
@@ -34,6 +43,11 @@ $("body").on("click" , ".join-hour" ,async function(){
 
 })
 
+$("body").on("click" , ".show-details" , function(){
+    const gardenID = $(this).closest(".gardenName").data().id
+    manger.garden = gardenID
+})
+
 // Search for cities
 $("body").on("click","#search-icon",async function(){
     let value = $(".search-inpt").val()
@@ -43,9 +57,9 @@ $("body").on("click","#search-icon",async function(){
      getAllgardens()
   })
   
-  $("body").on("click" , ".join-community", function(){
-        $
-  })
+//   $("body").on("click" , ".join-community", function(){
+//         $(this)
+//   })
 
   // move to profile
 
@@ -54,5 +68,6 @@ $("body").on("click","#search-icon",async function(){
   })
 
 
+  emptyClendar()
 
 
