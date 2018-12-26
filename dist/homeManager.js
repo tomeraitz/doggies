@@ -21,4 +21,6 @@ class homeManager {
     async saveGarden(){
         await $get(`/allgardens`)
     }
+
+    async joinCommunity()
 }

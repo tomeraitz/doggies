@@ -45,12 +45,12 @@ class Renderer {
             $(".cancel").click(function(){
                 $(".input-pop-up").hide();
             })
-            
+
         })
     }
 
-    addMarker(lat, lon , gardenName){
-        L.marker([lat, lon]).bindPopup(`<div class="gardenName">
+    addMarker(lat, lon , gardenName, id){
+        L.marker([lat, lon]).bindPopup(`<div data-id="${id}" class="gardenName">
                                             <p>${gardenName}</p>
                                             <button class="join-community">Join Garden</button>
                                          </div>`)

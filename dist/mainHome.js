@@ -4,7 +4,7 @@ const manger = new homeManager()
 
 const getAllgardens = async function(){
     await manger.getGaedens();
-    manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name))
+    manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name , g._id))
 }
 
 // Open a defulat map
@@ -40,9 +40,9 @@ $("body").on("click","#search-icon",async function(){
      render.buildMap(result[0].lat, result[0].lon)
   })
   
-//   $("body").on("click" , ".openPosts", function(){
-//     document.getElementById('posts').innerHTML = "<div style='width: 100%; height: 200px; background-color: black;'></div>"
-//   })
+  $("body").on("click" , ".join-community", function(){
+        $
+  })
 
 
 
