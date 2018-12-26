@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const gardenSchema = new Schema({
   name: String,
-  location: String,
+  lat: Number,
+  lon: Number,
   gardenPic: String,
   posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
   calendar: [{ type: Schema.Types.ObjectId, ref: 'Event' }]
