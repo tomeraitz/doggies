@@ -1,0 +1,28 @@
+{
+  "name": "doggies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomeraitz/doggies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomeraitz/doggies/issues"
+  },
+  "homepage": "https://github.com/tomeraitz/doggies#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
+    "mongoose": "^5.4.0",
+    "nodemon": "^1.18.9",
+    "request": "^2.88.0"
+  }
+}
