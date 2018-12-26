@@ -134,6 +134,7 @@ body {
 .join-hour {
     justify-self: center;
     align-self: center;
+    cursor: pointer;
 }
 
 .add-user {

@@ -24,6 +24,7 @@ body {
     font-size: 7vh;
     color: #ffffff;
     margin-left: 20%;
+    cursor: pointer;
 }
 
 #header > table {
