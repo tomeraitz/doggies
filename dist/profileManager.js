@@ -1,9 +1,9 @@
-
-class UploadImage {
-    constructor(profile, dogImage, communityImage) {
-        this.profile = profile
-        this.dogImage = dogImage
-        this.communityImage = communityImage
+class ProfileManager {
+    constructor() {
+        this.UserId = JSON.parse(sessionStorage.UserId)
+        // this.profile = profile
+        // this.dogImage = dogImage
+        // this.communityImage = communityImage
     }
 
     uploadProfileImage() {
@@ -23,18 +23,9 @@ class UploadImage {
             this.communityImage = data;
         })
     }
-}
 
-
-class User {
-    constructor(renderer) {
-        this.UserId = JSON.parse(sessionStorage.UserId);
-        this.renderer = renderer
-    }
-
-    async userName(userId) {
-        let user = await $.post(`user/${userId}`, function () {
-            renderer.renderer(user)
+    async getUserDetilas(userId) {
+        return await $.get(`user/${userId}`, function () {
         })
     }
 }

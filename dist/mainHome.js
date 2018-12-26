@@ -4,13 +4,13 @@ const manger = new homeManager()
 
 const getAllgardens = async function(){
     await manger.getGaedens();
+    console.log(manger.markerFromDB)
     manger.markerFromDB.forEach(g => render.addMarker(g.lat , g.lon , g.name , g._id))
 }
 
 // Open a defulat map
  window.onload = function() {
     render.buildMap(32.109333,34.855499)
-    render.addMarker(32.109333 , 34.855499) 
     getAllgardens()
  }
 
@@ -38,12 +38,18 @@ $("body").on("click","#search-icon",async function(){
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
      render.map.remove()
      render.buildMap(result[0].lat, result[0].lon)
+     getAllgardens()
   })
   
   $("body").on("click" , ".join-community", function(){
         $
   })
 
+  // move to profile
+
+  $("body").on("click" ,"#move-to-profile", function(){
+    window.location.href = "profile.html"
+  })
 
 
 
