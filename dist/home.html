@@ -1,459 +1,466 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>doggies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="homeStyle.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous">
-    <script src="main.js"></script>
-</head>
-
-<body>
-    <div id="header">
-        <h1 id="logo">doggies</h1>
-        <table>
-            <tr>
-                <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
-                <td class="username"> <label>Username</label> </td>
-            </tr>
-        </table>
-    </div>
-
-    <div id="middle">
-        <div></div>
-        <div id="map-search">
-            <input id="search-inpt" type="text" placeholder="Search dog park...">
-            <div id="search-icon"><i class="fas fa-search fa-lg"></i></div>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>doggies</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="homeStyle.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+            crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    </head>
+    
+    <body>
+        <div id="header">
+            <h1 id="logo">doggies</h1>
+            <table>
+                <tr>
+                    <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
+                    <td class="username"> <label>Username</label> </td>
+                </tr>
+            </table>
         </div>
-        <div></div>
-        <div></div>
-        <div id="comunities">
-            <div id="map">
-                <i id="map-icon" class="fas fa-map-marked-alt fa-10x"></i>
+    
+        <div id="middle">
+            <div></div>
+            <div id="map-search">
+                <input id="search-inpt" type="text" placeholder="Search dog park...">
+                <div id="search-icon"><i class="fas fa-search fa-lg"></i></div>
             </div>
-            <div id="calendar">
-                <div id="day">
-                    <h2>Today</p>
+            <div></div>
+            <div></div>
+            <div id="comunities">
+                <div id="map">
                 </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>00:00</span>
-                        <img class="user-calendar-img" src="data:image/png;base64,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"
-                            alt="username">
-                        <img class="user-calendar-img" src="data:image/png;base64,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"
-                            alt="username">
-
+                <div id="calendar">
+                    <div id="day">
+                        <h2>Today</p>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>00:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user" id="00:00">
+                            <span>00:00</span>
+                            
+                        </div>
+                        <span class="join-hour">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>01:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user" id="00:30">
+                            <span>00:30</span>
+    
+                        </div>
+                        <span class="join-hour">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>01:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user" id="01:00">
+                            <span>01:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="01:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>02:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>01:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="02:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>02:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>02:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="02:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>03:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>02:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="03:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>03:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>03:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="03:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>04:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>03:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="04:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>04:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>04:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="04:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>05:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>04:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="05:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>05:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>05:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="05:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>06:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>05:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="06:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>06:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>06:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="06:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>07:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>06:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="07:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>07:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>07:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="07:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>08:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>07:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="08:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>08:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>08:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="08:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>09:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>08:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="09:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>09:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>09:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="09:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>10:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>09:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="10:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>10:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>10:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="10:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>11:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>10:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="11:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>11:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>11:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="11:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>12:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>11:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="12:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>12:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>12:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="12:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>13:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>12:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="13:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>13:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>13:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="13:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>14:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>13:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="14:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>14:30</span>
-
+    
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>14:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="14:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>15:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>14:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="15:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>15:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>15:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="15:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>16:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>15:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="16:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>16:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>16:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="16:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>17:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>16:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="17:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>17:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>17:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="17:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>18:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>17:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="18:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>18:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>18:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="18:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>19:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>18:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="19:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>19:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>19:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="19:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>20:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>19:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="20:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>20:30</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>20:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="20:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-                <div class="hour">
-                    <div class="add-user">
-                        <span>21:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>20:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="21:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">
-                        <span>21:30</span>
-
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>21:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="21:30">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-                <div class="hour">
-                    <div class="add-user">
-                        <span>22:00</span>
-
+    
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>21:30</span>
+    
+                        </div>
+                        <span class="join-hour" id="22:00">+</span>
                     </div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">22:30</div>
-                    <span class="join-hour">+</span>
-                </div>
-                <div class="hour">
-                    <div class="add-user">23:00</div>
-                    <span class="join-hour">+</span>
-                </div>
-
-                <div class="hour">
-                    <div class="add-user">23:30</div>
-                    <span class="join-hour">+</span>
+                    <div class="hour">
+                        <div class="add-user">
+                            <span>22:00</span>
+    
+                        </div>
+                        <span class="join-hour" id="22:30">+</span>
+                    </div>
+    
+                    <div class="hour">
+                        <div class="add-user" >22:30</div>
+                        <span class="join-hour" id="23:00">+</span>
+                    </div>
+                    <div class="hour">
+                        <div class="add-user">23:00</div>
+                        <span class="join-hour" id="23:30">+</span>
+                    </div>
+    
+                    <div class="hour">
+                        <div class="add-user" >23:30</div>
+                        <span class="join-hour">+</span>
+                    </div>
                 </div>
             </div>
+            <script id="events-templat" type="text/x-handlebars-template">
+                {{#each user}}
+                    <img class="user-calendar-img" src="{{user.profilePic}}" alt="username">
+                {{/each}}
+                
+            </script>
+    
+            <div></div>
         </div>
-
-        <div></div>
-    </div>
-
-    <div class="posts">
-        <div></div>
-        <div class="single-post">
+    
+        <div class="posts">
             <div></div>
-            <div class="username-post">
-                <i class="fas fa-user-circle fa-2x"></i>
-                <span>username</span>
-            </div>
-            <div></div>
-            <div class="title">
-                <h3>Who's coming at 20:30?</h3>
-            </div>
-            <div></div>
-            <div class="comments">
-                <div class="single-comment">
-                    <i class="fas fa-user-circle"></i>
+            <div class="single-post">
+                <div></div>
+                <div class="username-post">
+                    <i class="fas fa-user-circle fa-2x"></i>
                     <span>username</span>
-                    <p>I'll be there at 20-45</p>
                 </div>
-                <div class="single-comment">
-                    <i class="fas fa-user-circle"></i>
-                    <span>username</span>
-                    <p>Can't today my bruh</p>
+                <div></div>
+                <div class="title">
+                    <h3>Who's coming at 20:30?</h3>
                 </div>
-
-                <table class="comment-table">
-                    <td><input class="comment-inpt" type="text"></td>
-                    <td class="td-button"><button class="comment-button">Comment</button></td>
-                </table>
+                <div></div>
+                <div class="comments">
+                    <div class="single-comment">
+                        <i class="fas fa-user-circle"></i>
+                        <span>username</span>
+                        <p>I'll be there at 20-45</p>
+                    </div>
+                    <div class="single-comment">
+                        <i class="fas fa-user-circle"></i>
+                        <span>username</span>
+                        <p>Can't today my bruh</p>
+                    </div>
+    
+                    <table class="comment-table">
+                        <td><input class="comment-inpt" type="text"></td>
+                        <td class="td-button"><button class="comment-button">Comment</button></td>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    <script src="open.js"></script>
+    <script src="homeManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="mainHome.js"></script>
 </body>
-
 </html>

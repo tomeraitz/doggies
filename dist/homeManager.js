@@ -1,6 +1,6 @@
 class homeManager {
     constructor() {
-        this.UserId = JSON.parse(sessionStorage.UserId)
+      //  this.UserId = JSON.parse(sessionStorage.UserId)
     }
 
     async getEvents(gardenName){
