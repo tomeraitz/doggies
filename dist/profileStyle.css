@@ -53,9 +53,8 @@ body {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     background-color: #eee;
-    height: 80vh;
+    height: 100vh;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 #profile-pic-name {
@@ -86,11 +85,17 @@ body {
     border-radius: 50%;
     width: 20vh;
     justify-self: center;
-    border: #fff solid 2px
+    border: #fff solid 2px;
+    cursor: pointer;
 }
 
 #dogs {
     margin-left: 2vw;
+}
+
+.add-dog > i {
+    color: #3B413C;
+    cursor: pointer;
 }
 
 .dog-name {
@@ -103,8 +108,9 @@ body {
 }
 
 .dog-img {
-    border-radius: 50%;
+    border-radius: 42%;
     width: 8vh;
+    align-self: center;
 }
 
 #communities {
@@ -151,6 +157,7 @@ body {
     border-radius: 5px;
     height: fit-content;
     padding-bottom: 1vh;
+    margin-bottom: 1vh;
 }
 
 .username-post {
@@ -222,4 +229,75 @@ body {
 
 .td-button {
     width: 5vw;
+}
+
+.input-pop-up{
+    display: grid;
+    position: fixed;
+    top: 27%;
+    left: 27%;
+    border-radius: 5px;
+    height: 200px;
+    width: 625px;
+    text-align: center;
+    background-color: #3B413C;
+    color: white;
+    z-index: 9999;
+    opacity: 0.9;
+    display: none;
+}
+
+
+.post-inpt{
+    border: none;
+    border-radius: 5px;
+    width: 58vw;
+    padding-left: 1vw;
+    color: #3B413C;
+    margin-right: 1vh;
+}
+#pop-up-title {
+    color: #fff;
+}
+
+#pop-up-grid {
+    display: grid;
+}
+
+
+#dog-name-input {
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 1vw;
+    height: 20px;
+    margin-bottom: 2vh;
+    justify-self: center;
+    display: block;
+
+}
+
+.save {
+    width: 21%;
+    height: 20px;
+    border: none;
+    background-color: #97D6E1;
+    border-radius: 5px;
+    color: #3B413C;
+}
+
+.cancel {
+    width: 20%;
+    height: 20px;
+    border: none;
+    background-color: #bccc34;
+    border-radius: 5px;
+    color: #3B413C;
+
+}
+
+#file-upload {
+    margin-bottom: 2vh;
+    justify-self: center;
+    width: 20vw;
 }
