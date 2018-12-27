@@ -71,6 +71,10 @@ body {
     display: none;
 }
 
+.input-file-dog {
+    display: none;
+}
+
 #username-p {
     font-size: 3vh;
     margin: 1vh 0 0 0;
