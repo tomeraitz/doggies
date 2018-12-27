@@ -28,4 +28,9 @@ class ProfileManager {
         return await $.get(`user/${userId}`, function () {
         })
     }
+
+    async addDog(name){
+       const dog =  {name : name}
+        await $.post(`dog/${this.UserId}`, dog)
+    }
 }

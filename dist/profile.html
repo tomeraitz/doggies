@@ -29,40 +29,58 @@
                 <p id="username-p">{{firstName}} {{lastName}}</p>
                 <p id="email-p">{{email}}</p>
             </form>
-
+            <div class="input-pop-up">
+                    <div id=pop-up-grid>
+                        <h1 id="pop-up-title">doggie name?</h1>                       
+                        <input type="text" id="dog-name-input" placeholder="doggie name">
+                        <div>
+                                <input id="file-upload" type="file"> 
+                                <button class="save">Submit</button>
+                        </div>
+                        <div id="button">
+                            <button class="save">Save</button>
+                            <button class="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
             <div id="dogs">
                 <h3>My doggies:</h3>
                 {{#each dogs}}
                 <div class="dog-name">
-                    <input type="file" class="input-file">
                     <img src="{{profilePic}}"
                         alt="" class="dog-img">
                     <p>{{name}}</p>
                 </div>
                 {{/each}}
+                <input type="file" class="input-file">
+                <div class="add-dog">
+                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-dog fa-2x"></i>
+                </div>
+                
             </div>
 
             <div id="communities">
                 <h3>Communities:</h3>
 
-                {{#each garden}}
+                {{#each gardens}}
                 <div class="com-name">
                     <i class="fas fa-map-marker-alt fa-lg mark-icon"></i>
-                    <p>{{gardenPic}}</p>
+                    <p>{{name}}</p>
                 </div>
                 {{/each}}
             </div>
     </script>
 
         <script id="posts-template" type="text/x-handlebars-template">
-        {{#each data}}
+            {{#each data}}
         <div></div>
         <div class="single-post" data-id="{{_id}}">
             <div></div>
             <div class="username-post">
                 <i class="fas fa-user-circle fa-2x"></i>
                 <span class="user-post">{{user.firstName}} {{user.lastName}}</span>
-                <span class="community-post">(Florentin, TLV)</span>
+                <span class="community-post">({{garden.name}})</span>
                 <button class="delete-post-button"><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
@@ -71,10 +89,10 @@
             </div>
             <div></div>
             <div class="comments">
-                {{#each data.comments}}
+                {{#each comments}}
                 <div class="single-comment">
                     <i class="fas fa-user-circle"></i>
-                    <span>{{user}}</span>
+                    <span>{{user.firstName}} {{user.lastName}}</span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}

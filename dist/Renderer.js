@@ -1,7 +1,40 @@
 class Renderer {
     constructor() {
         this.map = "";
+    }
 
+    emptyClendar() {
+        const collection = document.getElementsByClassName("event-span")
+        const calendar = Array.prototype.slice.call(collection)
+        calendar.forEach(e => $(e).empty())
+    }
+
+    renderCalendar(events) {
+        const collection = document.getElementsByClassName("event-span")
+        const calendar = Array.prototype.slice.call(collection)
+        while (events.length > 0)
+        {
+            let event = events.pop()
+            calendar.forEach(e => {
+                let time = $(e).closest(".event").data().time
+                if (event.date == time)
+                {
+                    let eventCount = 0
+                    event.users.forEach(u => {
+                        eventCount++
+                        if (eventCount <= 3)
+                        {
+                            $(e).append(`<img class="event-pic" src="${u.profilePic}"/>`)
+                            // $(e).append(`<img class="user-calendar-img" src="https://www.geogreen.co.uk/wp-content/uploads/2017/12/profile-icon.png"/>`)
+                        }
+                    })
+                    if (eventCount > 3)
+                    {
+                        $(e).append(` + ${eventCount - 3}`)
+                    }
+                }
+            })
+        }
     }
 
     // Renderer the gardens
@@ -14,10 +47,8 @@ class Renderer {
     }
 
 
-     // initialize map
-    buildMap(lat,lon)  {
-
-
+    // initialize map
+    buildMap(lat, lon) {
         $('#map').empty();
         $('#map').append("<div id='mapDetials' style='width: 100%; height: 100%;'></div>")
         this.map = L.map('map').setView([lat, lon], 10);
@@ -30,6 +61,7 @@ class Renderer {
         // Point on position in map to add a new marker
         this.map.on('click', e => {
             $(".input-pop-up").show();
+            $("#garden-name").val("")
             $(".save").click(function () {
                 let gardenName = $("#garden-name").val()
                 let Newlat = e.latlng.lat;
@@ -40,9 +72,8 @@ class Renderer {
                     lon: Newlon,
                 }
 
-                $.post(`/garden/${manager.UserId}` , garden)
-                render.addUserMarker(Newlat , Newlon, gardenName)
-
+                $.post(`/garden/${manager.UserId}`, garden)
+                render.addUserMarker(Newlat, Newlon, gardenName)
                 getAllgardens()
                 $(".input-pop-up").hide();
             })
@@ -78,20 +109,13 @@ class Renderer {
             .addTo(this.map)
     }
 
-    renderPostsData(user, id) {
-        $(`#${id}`).empty();
-        const source = $('#events-template').html();
-        let template = Handlebars.compile(source);
-        let newHTML = template({ user });
-        $(`#${id}`).append(newHTML)
-    }
 
-    renderPosts(data){
+    renderPosts(data) {
         $(`.posts`).empty();
         console.log(data)
         const source = $('#posts-template').html();
         let template = Handlebars.compile(source);
-        let newHTML = template({data});
+        let newHTML = template({ data });
         $(`.posts`).append(newHTML)
     }
 }
