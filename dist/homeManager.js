@@ -1,10 +1,10 @@
 class homeManager {
     constructor() {
 
-          this.UserId = JSON.parse(sessionStorage.UserId)
-          this.markerGeneral = []
-          this.markerUser = []
-          this.garden = ""
+        this.UserId = JSON.parse(sessionStorage.UserId)
+        this.markerGeneral = []
+        this.markerUser = []
+        this.garden = ""
     }
 
     // async getEvents(gardenName){
@@ -18,8 +18,8 @@ class homeManager {
         await $.post(`/event`, event)
     }
 
-    async getGaedens(){
-        let gardens =  await $.get(`/allgardens`)
+    async getGardens() {
+        let gardens = await $.get(`/allgardens`)
         this.markerGeneral = []
         gardens.forEach(g => {
             let exist = false
@@ -36,19 +36,24 @@ class homeManager {
             exist = false
 
         })
-        
-    }
-
-    async joinCommunity(){
 
     }
 
-    async addUserGardens(UserGardens){
+    async joinCommunity() {
+
+    }
+
+    async addUserGardens(UserGardens) {
         this.markerUser = []
         this.markerUser.push(...UserGardens)
     }
 
-    async getUserGardens(){
+    async getUserGardens() {
         return $.get(`/user/${this.UserId}`)
+    }
+
+    async getEvents() {
+        const garden = await $.get(`/garden/${this.garden}`)
+        return garden.calendar
     }
 }

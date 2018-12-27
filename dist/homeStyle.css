@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 body {
     margin: 0;
     padding: 0;
@@ -9,13 +8,13 @@ body {
 }
 
 /* HEADER STYLE */
+
 #header {
     margin: 0;
     height: 10%;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-
 }
 
 #header-position {
@@ -30,7 +29,7 @@ body {
     color: #ffffff;
 }
 
-#header > table {
+#header>table {
     align-self: center;
 }
 
@@ -42,7 +41,6 @@ body {
 
 #icon {
     color: #fff
-
 }
 
 .username {
@@ -50,11 +48,12 @@ body {
     color: #ffffff;
 }
 
-.username > p {
+.username>p {
     margin-left: 1vw;
 }
 
 /* MAP STYLE */
+
 #middle {
     display: grid;
     height: 80%;
@@ -83,7 +82,7 @@ body {
     background-color: #EAEFBD;
 }
 
-#search-icon > i {
+#search-icon>i {
     align-self: center;
     justify-self: center;
     color: #3B413C
@@ -108,7 +107,6 @@ body {
     border-bottom-right-radius: 5px;
     height: 33vh;
     overflow: hidden;
-    
 }
 
 .calendar:hover {
@@ -116,7 +114,7 @@ body {
     overflow-y: visible;
 }
 
-#day > h2 {
+#day>h2 {
     font-size: 175%;
     margin-left: 2vw;
     color: #3B413C;
@@ -137,21 +135,23 @@ body {
     cursor: pointer;
 }
 
-.add-user {
+.event {
     align-self: center;
 }
 
-.add-user > span {
+.event>span {
     color: #3B413C;
 }
 
-.user-calendar-img {
+.event-pic {
     border-radius: 50%;
     height: 3vh;
     width: 3vh;
+    margin-right: 1vw;
 }
 
 /* POSTS STYLE */
+
 .posts {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
@@ -203,7 +203,7 @@ body {
     color: #bccc34;
 }
 
-.title > h3 {
+.title>h3 {
     margin: 0;
     color: #3B413C;
 }
@@ -221,7 +221,7 @@ body {
     padding: 1%;
 }
 
-.single-comment > p {
+.single-comment>p {
     margin: 0;
 }
 
@@ -251,7 +251,7 @@ body {
     width: 5vw;
 }
 
-.input-pop-up{
+.input-pop-up {
     position: fixed;
     height: 100vh;
     width: 100vw;
