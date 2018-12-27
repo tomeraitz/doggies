@@ -37,7 +37,7 @@
                 <tr id="move-to-profile">
                     <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
                     <td class="username">
-                        <p>Username</p>
+                        <p class="capitals" id="nameDisplay"></p>
                     </td>
                 </tr>
             </table>
@@ -59,7 +59,7 @@
             <div class="calendar">
                 <div id="day">
                     <h2>Today</h2>
-                    <span id="calendar-community-name">(Florentin, TLV)</span>
+                    <span class="capitals" id="calendar-community-name"></span>
                 </div>
 
                 <div class="hour">
@@ -472,8 +472,8 @@
             <div></div>
             <div class="username-post">
                 <i class="fas fa-user-circle fa-2x"></i>
-                <span class="user-post">{{user.firstName}} {{user.lastName}}</span>
-                <span class="community-post">(Florentin, TLV)</span>
+                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span>
+                <span class="community-post capitals">({{garden.name}})</span>
                 <button class="delete-post-button" ><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
@@ -485,7 +485,7 @@
                 {{#each comments}}
                 <div class="single-comment">
                     <i class="fas fa-user-circle"></i>
-                    <span>{{user.firstName}} {{user.lastName}}</span>
+                    <span class="capitals">{{user.firstName}} {{user.lastName}}</span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}

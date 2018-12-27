@@ -12,16 +12,13 @@ class Renderer {
     renderCalendar(events) {
         const collection = document.getElementsByClassName("event-span")
         const calendar = Array.prototype.slice.call(collection)
-        console.log(events)
         while (events.length > 0)
         {
             let event = events.pop()
             calendar.forEach(e => {
                 let time = $(e).closest(".event").data().time
-                console.log(`${event.date}`)
                 if (event.date == time)
                 {
-                    console.log("event")
                     let eventCount = 0
                     event.users.forEach(u => {
                         eventCount++
@@ -64,6 +61,7 @@ class Renderer {
         // Point on position in map to add a new marker
         this.map.on('click', e => {
             $(".input-pop-up").show();
+            $("#garden-name").val("")
             $(".save").click(function () {
                 let gardenName = $("#garden-name").val()
                 let Newlat = e.latlng.lat;
@@ -111,20 +109,13 @@ class Renderer {
             .addTo(this.map)
     }
 
-    renderPostsData(user, id) {
-        $(`#${id}`).empty();
-        const source = $('#events-template').html();
-        let template = Handlebars.compile(source);
-        let newHTML = template({ user });
-        $(`#${id}`).append(newHTML)
-    }
 
-    renderPosts(data){
+    renderPosts(data) {
         $(`.posts`).empty();
         console.log(data)
         const source = $('#posts-template').html();
         let template = Handlebars.compile(source);
-        let newHTML = template({data});
+        let newHTML = template({ data });
         $(`.posts`).append(newHTML)
     }
 }

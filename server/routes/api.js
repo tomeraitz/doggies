@@ -118,10 +118,12 @@ router.get('/garden/:gardenId', function (req, res) {
 // get gardenPosts
 router.get('/gardenPosts/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
+
+
     .populate({
       path: 'posts ',
       populate: {
-        path: 'user comments',
+        path: 'user comments garden',
         populate: {
           path: 'user'
         }
@@ -141,16 +143,12 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
   })
   console.log(`new post: ${post.text}`)
   await post.save()
-  await User.findByIdAndUpdate(req.params.userId, {
-    $push: {
-      posts: post
-    }
-  })
-  await Garden.findByIdAndUpdate(req.params.gardenId, {
-    $push: {
-      posts: post
-    }
-  })
+
+  await User.findByIdAndUpdate(req.params.userId,
+    { $push: { posts: post } })
+  await Garden.findByIdAndUpdate(req.params.gardenId,
+    { $push: { posts: post } })
+
   await Post.findById(post._id).populate('user').exec(function (err, newpost) {
     res.send(newpost)
   })
@@ -195,8 +193,9 @@ router.post('/event/', async function (req, res) {
         garden.calendar.push(event)
         garden.save().then(res.send(garden))
       })
-  } else {
-    exist.users.push(req.body.userId)
+  } else
+  {
+    exist.users.$addToSet(req.body.userId).exec()
     exist.save().then(res.send(exist))
   }
 })
