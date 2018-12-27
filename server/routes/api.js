@@ -6,8 +6,8 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 const Event = require('../models/event')
 const Dog = require('../models/dog')
+const moment = require('moment')
 // const request = require('request')
-// const moment = require('moment')
 
 
 //remove user 
@@ -150,7 +150,7 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     user: req.params.userId,
     garden: req.params.gardenId,
     text: req.body.text,
-    date: req.body.date
+    date: moment().format("LLL")
   })
   console.log(`new post: ${post.text}`)
   await post.save()
@@ -229,7 +229,7 @@ router.post('/comment/:userId/:postId', async function (req, res) {
     user: req.params.userId,
     post: req.params.postId,
     text: req.body.text,
-    date: req.body.date
+    date: moment().format("LLL")
   })
   console.log(`new comment: ${comment.text}`)
   await comment.save()

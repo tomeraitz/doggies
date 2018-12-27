@@ -40,8 +40,7 @@ class homeManager {
 
     async addNewcomment(postId, text) {
         let comment = {
-            text: text,
-            date: new Date()
+            text: text
         }
         await $.post(`/comment/${this.UserId}/${postId}`, comment)
     }
@@ -49,7 +48,6 @@ class homeManager {
     async addnewPost(text) {
         const post = {
             text: text,
-            date: new Date()
         }
         await $.post(`/post/${this.UserId}/${this.garden}`, post)
     }

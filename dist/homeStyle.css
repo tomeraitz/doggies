@@ -168,10 +168,26 @@ body {
 
 /* POSTS STYLE */
 
-.posts {
+.single-comment>.post-pic {
+    height: 3vh;
+    width: 3vh;
+}
+
+.post-pic {
+    height: 5vh;
+    width: 5vh;
+}
+
+.post-date {
+    color: #3B413C;
+    margin-left: 5px;
+    font-size: 70%;
+}
+
+/* .posts-date {
     display: grid;
     margin: 2vh 0;
-}
+} */
 
 .general-posts {
     display: grid;
