@@ -13,4 +13,13 @@ class RendererProfile {
         $("#profile").append(newHTML);
     }
 
+    rednerPosts(data) {
+        console.log(data)
+        $("#posts").empty();
+        let source = $("#post-template").html();
+        let template = Handlebars.compile(source);
+        let newHTML = template(data);
+        $("#posts").append(newHTML);
+    }
+
 }
