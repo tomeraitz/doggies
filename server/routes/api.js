@@ -113,10 +113,12 @@ router.get('/garden/:gardenId', function (req, res) {
 router.get('/gardenPosts/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
   .populate({
-      path: 'posts',
+      path: 'posts ',
      populate: {
-          path: 'user'
-      }
+          path: 'user comments',
+      populate: {
+        path: 'user'
+    }}
     })
     .exec(function (err, posts) {
       res.send(posts)

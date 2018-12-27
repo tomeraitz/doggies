@@ -45,6 +45,7 @@ $("body").on("click" , ".join-hour" ,async function(){
 })
 
 $("body").on("click" , ".show-details" ,async function(){
+    $("#post-button").prop('disabled', false);
     const gardenID = $(this).closest(".gardenName").data().id
     manager.garden = gardenID
     let gardenP = await manager.getPosts(gardenID)
@@ -59,8 +60,12 @@ $("body").on("click" , "#post-button" ,async function(){
 })
 
 $("body").on("click" , ".comment-button" ,async function(){
+    const text = $(this).siblings(".comment-inpt").val()
+    console.log(text)
    const postID = $(this).closest(".single-post").data().id
-   console.log(postID)
+    await manager.addNewcomment(postID , text)
+    let gardenP = await manager.getPosts(manager.garden)
+    render.renderPosts(gardenP.posts)
 } )
 
 // Search for cities

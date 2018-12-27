@@ -44,6 +44,14 @@ class homeManager {
 
     }
 
+    async addNewcomment(postId , text){
+        let comment = {
+            text: text,
+            date: new Date()
+        }
+       await $.post(`/comment/${this.UserId}/${postId}`, comment)
+    }
+
     async addnewPost(text){
         const post ={
             text : text,

@@ -448,7 +448,7 @@
         <div></div>
         <div id="new-post">
             <input class="post-inpt" type="text" placeholder="What's new?">
-            <button id="post-button">Post</button>
+            <button id="post-button" disabled>Post</button>
         </div>
         <div></div>
         <div></div>
@@ -463,7 +463,7 @@
                 <i class="fas fa-user-circle fa-2x"></i>
                 <span class="user-post">{{user.firstName}} {{user.lastName}}</span>
                 <span class="community-post">(Florentin, TLV)</span>
-                <button class="delete-post-button"><i class="fas fa-backspace fa-lg"></i></button>
+                <button class="delete-post-button" ><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
             <div class="title">
@@ -471,10 +471,10 @@
             </div>
             <div></div>
             <div class="comments">
-                {{#each data.comments}}
+                {{#each comments}}
                 <div class="single-comment">
                     <i class="fas fa-user-circle"></i>
-                    <span>{{user}}</span>
+                    <span>{{user.firstName}} {{user.lastName}}</span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}
