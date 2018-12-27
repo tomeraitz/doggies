@@ -23,12 +23,19 @@
 
         <script id="profile-template" type="text/x-handlebars-template">
             <form id="profile-pic-name" action="/upload/profile/" method="POST">
-                <input type="file" class="input-file">
                 <img id="profile-image" src="{{profilePic}}"
-                        alt="" class="user-profile-img ">
+                        alt="" class="user-profile-img ">  
                 <p id="username-p">{{firstName}} {{lastName}}</p>
                 <p id="email-p">{{email}}</p>
             </form>
+            <form class="input-file" ref='uploadForm' 
+                id='uploadForm' 
+                action='/upload/profile/{{_id}}' 
+                method='post' 
+                encType="multipart/form-data">
+                <input type="file"  name="sampleFile"/>
+                <input type='submit' value='Upload' class="submit-pic"/>
+            </form>   
             <div class="input-pop-up">
                     <div id=pop-up-grid>
                         <h1 id="pop-up-title">doggie name?</h1>                       
@@ -50,9 +57,17 @@
                     <img src="{{profilePic}}"
                         alt="" class="dog-img">
                     <p>{{name}}</p>
+                    <form class="input-file-dog" ref='uploadForm' 
+                        id='uploadForm' 
+                        action='/upload/dog/{{_id}}' 
+                        method='post' 
+                        encType="multipart/form-data">
+                        <input type="file"  name="sampleFile"/>
+                        <input type='submit' value='Upload' class="submit-pic"/>
+                    </form>  
                 </div>
                 {{/each}}
-                <input type="file" class="input-file">
+                
                 <div class="add-dog">
                     <i class="fas fa-plus"></i>
                     <i class="fas fa-dog fa-2x"></i>

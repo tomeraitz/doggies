@@ -10,6 +10,7 @@ const moment = require('moment')
 // const request = require('request')
 
 
+
 //remove user 
 router.delete("/user/:userId", function (req, res) {
   User.findByIdAndDelete(req.params.userId).exec(function (err, user) {
@@ -315,28 +316,30 @@ router.post('/dog/:userId', async function (req, res) {
 
 // post profile pic
 router.post('/upload/profile/:userId', function (req, res) {
-  if (Object.keys(req.files).length == 0)
-  {
+  console.log(req.files)
+  if (Object.keys(req.files).length == 0) {
     res.status(400).send('No files were uploaded.');
     return
   }
-  const fileName = req.files.sampleFile.name + Math.floor(Math.random() * 9999999999999999999)
+  const fileName = req.files.sampleFile.name
   const sampleFile = req.files.sampleFile
-  const uploadPath = __dirname + '/dist/uploads/' + sampleFile.name
+  const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
     if (err)
     {
       return res.status(500).send(err)
     }
   })
-  const user = User.findByIdAndUpdate(req.params(req.params.userId), {
-    profilePic: fileName
-  }, {
+
+  console.log(fileName)
+  const user = User.findByIdAndUpdate(req.params.userId, {
+      profilePic: "uploads/" + fileName
+    }, {
       new: true
     })
     .populate('gardens posts')
     .exec()
-  res.send(user)
+    res.redirect('back');
 })
 
 // post garden pic
@@ -346,9 +349,9 @@ router.post('/upload/garden/:gardenId', function (req, res) {
     res.status(400).send('No files were uploaded.');
     return
   }
-  const fileName = req.files.sampleFile.name + Math.floor(Math.random() * 9999999999999999999)
+  const fileName = req.files.sampleFile.name
   const sampleFile = req.files.sampleFile
-  const uploadPath = __dirname + '/dist/uploads/' + sampleFile.name
+  const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
     if (err)
     {
@@ -373,9 +376,9 @@ router.post('/upload/dog/:dogId', async function (req, res) {
     res.status(400).send('No files were uploaded.');
     return
   }
-  const fileName = req.files.sampleFile.name + Math.floor(Math.random() * 9999999999999999999)
+  const fileName = req.files.sampleFile.name 
   const sampleFile = req.files.sampleFile
-  const uploadPath = __dirname + '/dist/uploads/' + sampleFile.name
+  const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
     if (err)
     {
@@ -383,9 +386,9 @@ router.post('/upload/dog/:dogId', async function (req, res) {
     }
   })
   Dog.findByIdAndUpdate(req.params.dogId, {
-    profilePic: fileName
+    profilePic: "uploads/" + fileName
   }).exec((err, dog) => {
-    res.send(dog)
+    res.redirect('back');
   })
 })
 ///////////////////////////////////////////////////////////////
