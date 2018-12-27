@@ -43,7 +43,7 @@ body {
     border: none;
     border-radius: 5px;
     margin-left: 1vw;
-    height: 3vh;
+    padding-left: 1vh;
 }
 
 #login-button {
@@ -53,8 +53,6 @@ body {
     margin-left: 1vw;
     border: none;
     border-radius: 5px;
-    height: 20%;
-    width: 5vw;
     background-color: #EAEFBD;
 }
 
@@ -63,8 +61,9 @@ body {
     grid-template-columns: 53% 32%;
 }
 
-#middle>img {
-    height: 80vh;
+#dog-image {
+    height: 40vh;
+    margin-left: 5vw;
     justify-self: center;
     align-self: center;
 }
@@ -135,11 +134,81 @@ body {
     border: none;
     border-radius: 5px;
     height: 5vh;
-    width: 8vw;
     background-color: #EAEFBD;
     color: #3B413C;
 }
 
 .input-err {
     border: 2px dotted rgb(197, 34, 34);
+}
+
+@media (max-width: 764px) {
+    #dog-image {
+        display: none;
+    }
+
+    #header {
+        grid-template-columns: 1fr;
+    }
+
+    #logo {
+        font-size: 7vh;
+        margin: 5vh 3vh;
+        justify-self: center;
+    }
+
+    .login-input {
+        margin-left: 7%;
+        padding-right: 2vh;
+        width: 76%;
+        height: 4vh;
+    }
+
+    #login-button {
+        width: 92%;
+        height: 4vh;
+        margin-top: 1vh;
+        margin-left: 16px;
+        margin-bottom: 3vh;
+    }
+
+    #middle {
+        grid-template-columns: 1fr 
+    }
+
+    #signup > h1 {
+        
+        font-size: 176%;
+        margin: 0 0 1vh 7px;
+    }
+
+    .sign-up-input {
+        width: 98%;
+    }
+
+    .big-signup {
+        width: 100%
+    }
+
+    .login > label {
+        display: none;
+    }
+
+    #date-ob-inpt {
+        width: 100%;
+    }
+
+    #signup > table {
+        width: 100%
+    }
+
+    #signup-button {
+        width: 100%;
+    }
+
+    #signup > p {
+        margin-bottom: 3vh;
+        font-size: 20px;
+        margin-left: 10px;
+    }
 }

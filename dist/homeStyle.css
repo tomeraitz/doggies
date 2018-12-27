@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #97D6E1;
+
 }
 
 /* HEADER STYLE */
+
 #header {
     margin: 0;
     height: 10%;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-
 }
 
 #header-position {
@@ -30,7 +30,7 @@ body {
     color: #ffffff;
 }
 
-#header > table {
+#header>table {
     align-self: center;
 }
 
@@ -42,7 +42,6 @@ body {
 
 #icon {
     color: #fff
-
 }
 
 .username {
@@ -50,11 +49,12 @@ body {
     color: #ffffff;
 }
 
-.username > p {
+.username>p {
     margin-left: 1vw;
 }
 
 /* MAP STYLE */
+
 #middle {
     display: grid;
     height: 80%;
@@ -83,7 +83,7 @@ body {
     background-color: #EAEFBD;
 }
 
-#search-icon > i {
+#search-icon>i {
     align-self: center;
     justify-self: center;
     color: #3B413C
@@ -108,7 +108,6 @@ body {
     border-bottom-right-radius: 5px;
     height: 33vh;
     overflow: hidden;
-    
 }
 
 .calendar:hover {
@@ -116,10 +115,17 @@ body {
     overflow-y: visible;
 }
 
-#day > h2 {
+#day>h2 {
     font-size: 175%;
     margin-left: 2vw;
     color: #3B413C;
+    display: inline-block;
+}
+
+#calendar-community-name {
+    font-size: 79%;
+    color: #bccc34;
+    margin-left: 1vw;
 }
 
 .hour {
@@ -137,21 +143,23 @@ body {
     cursor: pointer;
 }
 
-.add-user {
+.event {
     align-self: center;
 }
 
-.add-user > span {
+.event>span {
     color: #3B413C;
 }
 
-.user-calendar-img {
+.event-pic {
     border-radius: 50%;
     height: 3vh;
     width: 3vh;
+    margin-right: 1vw;
 }
 
 /* POSTS STYLE */
+
 .posts {
     display: grid;
     margin: 2vh 0;
@@ -208,7 +216,7 @@ body {
     color: #bccc34;
 }
 
-.title > h3 {
+.title>h3 {
     margin: 0;
     color: #3B413C;
 }
@@ -226,7 +234,7 @@ body {
     padding: 1%;
 }
 
-.single-comment > p {
+.single-comment>p {
     margin: 0;
 }
 
@@ -257,16 +265,21 @@ body {
 }
 
 .input-pop-up{
+    display: grid;
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    top: 27%;
+    left: 27%;
+    border-radius: 5px;
+    height: 200px;
+    width: 625px;
     text-align: center;
-    background-color: grey;
+    background-color: #3B413C;
     color: white;
     z-index: 9999;
     opacity: 0.9;
     display: none;
 }
+
 
 .post-inpt{
     border: none;
@@ -275,4 +288,43 @@ body {
     padding-left: 1vw;
     color: #3B413C;
     margin-right: 1vh;
+}
+#pop-up-title {
+    color: #fff;
+}
+
+#pop-up-grid {
+    display: grid;
+}
+
+
+#garden-name {
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    padding-left: 1vw;
+    height: 20px;
+    margin-bottom: 2vh;
+    justify-self: center;
+    display: block;
+
+}
+
+.save {
+    width: 21%;
+    height: 20px;
+    border: none;
+    background-color: #97D6E1;
+    border-radius: 5px;
+    color: #3B413C;
+}
+
+.cancel {
+    width: 20%;
+    height: 20px;
+    border: none;
+    background-color: #bccc34;
+    border-radius: 5px;
+    color: #3B413C;
+
 }

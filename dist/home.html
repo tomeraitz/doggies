@@ -19,10 +19,14 @@
 
 <body>
     <div class="input-pop-up">
-        <h1>What the name of the community?</h1>
-        <input type="text" id="garden-name">
-        <button class="save">Save</button>
-        <button class="cancel">Cancel</button>
+        <div id=pop-up-grid>
+            <h1 id="pop-up-title">What the name of this dog park?</h1>
+            <input type="text" id="garden-name" placeholder="Dog park name...">
+            <div id="button">
+                <button class="save">Save</button>
+                <button class="cancel">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <div id="header">
@@ -54,11 +58,12 @@
             </div>
             <div class="calendar">
                 <div id="day">
-                    <h2>Today</p>
+                    <h2>Today</h2>
+                    <span id="calendar-community-name">(Florentin, TLV)</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user" id="00:00">
+                    <div class="event" data-time="00:00">
                         <span>00:00</span>
                         <span class="event-span"></span>
                     </div>
@@ -66,7 +71,7 @@
                 </div>
 
                 <div class="hour">
-                    <div class="add-user" id="00:30">
+                    <div class="event" data-time="00:30">
                         <span>00:30</span>
                         <span class="event-span"></span>
                     </div>
@@ -74,372 +79,378 @@
                 </div>
 
                 <div class="hour">
-                    <div class="add-user" id="01:00">
+                    <div class="event" data-time="01:00">
                         <span>01:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="01:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="01:30">
                         <span>01:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="02:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="02:00">
                         <span>02:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="02:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="02:30">
                         <span>02:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="03:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="03:00">
                         <span>03:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="03:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="03:30">
                         <span>03:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="04:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="04:00">
                         <span>04:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="04:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="04:30">
                         <span>04:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="05:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="05:00">
                         <span>05:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="05:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="05:30">
                         <span>05:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="06:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="06:00">
                         <span>06:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="06:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="06:30">
                         <span>06:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="07:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="07:00">
                         <span>07:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="07:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="07:30">
                         <span>07:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="08:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="08:00">
                         <span>08:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="08:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="08:30">
                         <span>08:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="09:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="09:00">
                         <span>09:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="09:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="09:30">
                         <span>09:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="10:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="10:00">
                         <span>10:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="10:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="10:30">
                         <span>10:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="11:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="11:00">
                         <span>11:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="11:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="11:30">
                         <span>11:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="12:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="12:00">
                         <span>12:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="12:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="12:30">
                         <span>12:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="13:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="13:00">
                         <span>13:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="13:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="13:30">
                         <span>13:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="14:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="14:00">
                         <span>14:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="14:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="14:30">
                         <span>14:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="15:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="15:00">
                         <span>15:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="15:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="15:30">
                         <span>15:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="16:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="16:00">
                         <span>16:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="16:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="16:30">
                         <span>16:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="17:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="17:00">
                         <span>17:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="17:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="17:30">
                         <span>17:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="18:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="18:00">
                         <span>18:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="18:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="18:30">
                         <span>18:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="19:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="19:00">
                         <span>19:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="19:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="19:30">
                         <span>19:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="20:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="20:00">
                         <span>20:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="20:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="20:30">
                         <span>20:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="21:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="21:00">
                         <span>21:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="21:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="21:30">
                         <span>21:30</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="22:00">+</span>
+                    <span class="join-hour">+</span>
                 </div>
                 <div class="hour">
-                    <div class="add-user">
+                    <div class="event" data-time="22:00">
                         <span>22:00</span>
                         <span class="event-span"></span>
                     </div>
-                    <span class="join-hour" id="22:30">+</span>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">22:30</div>
-                    <span class="event-span"></span>
-                    <span class="join-hour" id="23:00">+</span>
+                    <div class="event" data-time="22:30">
+                        <span>22:30</span>
+                        <span class="event-span"></span>
+                    </div>
+                    <span class="join-hour">+</span>
                 </div>
                 <div class="hour">
-                    <div class="add-user">23:00</div>
-                    <span class="event-span"></span>
-                    <span class="join-hour" id="23:30">+</span>
+                    <div class="event" data-time="23:00">
+                        <span>23:00</span>
+                        <span class="event-span"></span>
+                    </div>
+                    <span class="join-hour">+</span>
                 </div>
 
                 <div class="hour">
-                    <div class="add-user">23:30</div>
-                    <span class="event-span"></span>
+                    <div class="event" data-time="23:30">
+                        <span>23:30</span>
+                        <span class="event-span"></span>
+                    </div>
+
                     <span class="join-hour">+</span>
                 </div>
             </div>
         </div>
-        <script id="events-templat" type="text/x-handlebars-template">
+        <!-- <script id="events-templat" type="text/x-handlebars-template">
             {{#each user}}
                     <img class="user-calendar-img" src="{{user.profilePic}}" alt="username">
             {{/each}}
-                
-        </script>
+            </script> -->
 
         <div></div>
     </div>
@@ -454,7 +465,7 @@
         <div></div>
         <div class="posts"></div>
     </div>
-        <script id="posts-template" type="text/x-handlebars-template">
+    <script id="posts-template" type="text/x-handlebars-template">
         {{#each data}}
         <div></div>
         <div class="single-post" data-id="{{_id}}">
@@ -488,10 +499,10 @@
         <div></div>
         {{/each}}
     </script>
-    
-        <script src="homeManager.js"></script>
-        <script src="Renderer.js"></script>
-        <script src="mainHome.js"></script>
+
+    <script src="homeManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="mainHome.js"></script>
 </body>
 
 </html>
