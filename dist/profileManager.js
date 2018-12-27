@@ -1,13 +1,13 @@
 class ProfileManager {
     constructor() {
-        this.UserId = JSON.parse(sessionStorage.UserId)
+        this.userId = JSON.parse(sessionStorage.UserId)
         // this.profile = profile
         // this.dogImage = dogImage
         // this.communityImage = communityImage
     }
 
     uploadProfileImage() {
-        $.post(`/upload/profile`, data => {
+        $.post(`/upload/profile/${this.userId}`, data => {
             this.profile = data;
         })
     }
