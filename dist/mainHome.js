@@ -10,8 +10,7 @@ const emptyClendar=function(){
 const getAllgardens = async function(){
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
-    await manager.getGaedens();
-    console.log(manager.markerGeneral)
+    await manager.getGaedens()
     manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
     manager.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
@@ -61,7 +60,6 @@ $("body").on("click" , "#post-button" ,async function(){
 
 $("body").on("click" , ".comment-button" ,async function(){
     const text = $(this).siblings(".comment-inpt").val()
-    console.log(text)
    const postID = $(this).closest(".single-post").data().id
     await manager.addNewcomment(postID , text)
     let gardenP = await manager.getPosts(manager.garden)
@@ -77,9 +75,16 @@ $("body").on("click","#search-icon",async function(){
      getAllgardens()
   })
   
-//   $("body").on("click" , ".join-community", function(){
-//         $(this)
-//   })
+  $("body").on("click" , ".join-community",async function(){
+        const gardenID = $(this).closest(".gardenName").data().id
+        manager.garden = gardenID
+        await manager.joinCommunity()
+        getAllgardens()
+        $("#post-button").prop('disabled', false);
+        let gardenP = await manager.getPosts(gardenID)
+        console.log(gardenP)
+         render.renderPosts(gardenP.posts)
+  })
 
   // move to profile
 

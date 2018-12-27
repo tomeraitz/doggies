@@ -62,6 +62,12 @@ class homeManager {
 
     async joinCommunity(){
 
+        await $.ajax({
+            url: `/user/garden/${this.UserId}/${this.garden}`,
+            method: "PUT",
+            success: response => {
+            }
+        })
     }
 
     async addUserGardens(UserGardens){
