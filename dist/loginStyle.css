@@ -158,4 +158,20 @@ body {
         font-size: 4vh;
     }
 
+    .login-input {
+        width: 24vw;
+    }
+
+    #middle {
+        grid-template-columns: 1fr 
+    }
+    
+    #signup > h1 {
+        
+        font-size: 176%;
+        margin: 1vh;
+    }
+    .login > label {
+        display: none;
+    }
 }
