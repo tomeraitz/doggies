@@ -154,6 +154,11 @@ body {
 /* POSTS STYLE */
 .posts {
     display: grid;
+    margin: 2vh 0;
+}
+
+.general-posts {
+    display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     margin: 2vh 0;
 }
@@ -261,4 +266,13 @@ body {
     z-index: 9999;
     opacity: 0.9;
     display: none;
+}
+
+.post-inpt{
+    border: none;
+    border-radius: 5px;
+    width: 58vw;
+    padding-left: 1vw;
+    color: #3B413C;
+    margin-right: 1vh;
 }

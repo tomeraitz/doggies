@@ -13,6 +13,8 @@ class Renderer {
         $(`#${id}`).append(newHTML)
     }
 
+
+
      // initialize map
     buildMap(lat,lon)  {
         $('#map').empty();
@@ -36,7 +38,7 @@ class Renderer {
                     lat: Newlat,
                     lon: Newlon,
                 }
-                $.post(`/garden/${manger.UserId}` , garden)
+                $.post(`/garden/${manager.UserId}` , garden)
                 render.addUserMarker(Newlat , Newlon, gardenName)
                 getAllgardens()
                 $(".input-pop-up").hide();
@@ -79,6 +81,15 @@ class Renderer {
         let template = Handlebars.compile(source);
         let newHTML = template({user});
         $(`#${id}`).append(newHTML)
+    }
+
+    renderPosts(data){
+        $(`.posts`).empty();
+        console.log(data)
+        const source = $('#posts-template').html();
+        let template = Handlebars.compile(source);
+        let newHTML = template({data});
+        $(`.posts`).append(newHTML)
     }
 }
 
