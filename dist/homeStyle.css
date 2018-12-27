@@ -184,11 +184,6 @@ body {
     font-size: 70%;
 }
 
-/* .posts-date {
-    display: grid;
-    margin: 2vh 0;
-} */
-
 .general-posts {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;

@@ -18,7 +18,7 @@
 
     <div id="middle">
         <div></div>
-        <div id="profile"></div>
+        <div id="profile" class="capitals"></div>
         <div class="posts"></div>
 
         <script id="profile-template" type="text/x-handlebars-template">
@@ -78,9 +78,10 @@
         <div class="single-post" data-id="{{_id}}">
             <div></div>
             <div class="username-post">
-                <i class="fas fa-user-circle fa-2x"></i>
-                <span class="user-post">{{user.firstName}} {{user.lastName}}</span>
-                <span class="community-post">({{garden.name}})</span>
+                    <img class="post-pic" src="{{user.profilePic}}">
+                <!-- <i class="fas fa-user-circle fa-2x"></i> -->
+                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date">{{date}} </span>
+                <span class="community-post capitals">({{garden.name}})</span>
                 <button class="delete-post-button"><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
@@ -91,8 +92,9 @@
             <div class="comments">
                 {{#each comments}}
                 <div class="single-comment">
-                    <i class="fas fa-user-circle"></i>
-                    <span>{{user.firstName}} {{user.lastName}}</span>
+                        <img class="post-pic" src="{{user.profilePic}}">
+                    <!-- <i class="fas fa-user-circle"></i> -->
+                    <span class="capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date capitals">{{date}} </span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}
