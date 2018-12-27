@@ -7,6 +7,7 @@ class RendererProfile {
 
     renderProfile(data) {
         $("#profile").empty();
+        console.log(data)
         let source = $("#profile-template").html();
         let template = Handlebars.compile(source);
         let newHTML = template(data);
@@ -15,11 +16,12 @@ class RendererProfile {
 
     rednerPosts(data) {
         console.log(data)
-        $("#posts").empty();
-        let source = $("#post-template").html();
+        $(".posts").empty();
+        let source = $("#posts-template").html();
         let template = Handlebars.compile(source);
-        let newHTML = template(data);
-        $("#posts").append(newHTML);
+        let newHTML = template({data});
+        $(".posts").append(newHTML);
     }
+
 
 }

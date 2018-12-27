@@ -5,6 +5,7 @@ const getAllgardens = async function () {
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
     await manager.getGardens()
+
     manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat, g.lon, g.name, g._id))
     manager.markerUser.forEach(g => render.addUserMarker(g.lat, g.lon, g.name, g._id))
 }
@@ -57,7 +58,8 @@ $("body").on("click", ".show-details", async function () {
 
 })
 
-$("body").on("click", "#post-button", async function () {
+$("body").on("click" , "#post-button" ,async function(){
+
     const input = $(".post-inpt").val()
     await manager.addnewPost(input)
     let gardenP = await manager.getPosts(manager.garden)
@@ -104,23 +106,4 @@ $("body").on("click", "#move-to-profile", function () {
 })
 
 render.emptyClendar()
-
-const fakeEvents = [
-    {
-        date: "00:30",
-        users: [1, 2, 3, 4]
-    },
-    {
-        date: "01:30",
-        users: [1, 2, 3, 4]
-    },
-    {
-        date: "02:00",
-        users: [1, 2]
-    },
-    {
-        date: "04:30",
-        users: [1, 2, 3, 4, 5, 6, 7]
-    }
-]
 
