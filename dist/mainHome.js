@@ -1,17 +1,19 @@
 const render = new Renderer()
 const manager = new homeManager()
 
-const emptyClendar=function(){
+const emptyClendar = function () {
     const collection = document.getElementsByClassName("event-span")
-    const calendar = Array.prototype.slice.call( collection )
-    calendar.forEach(e=>$(e).empty())
+    const calendar = Array.prototype.slice.call(collection)
+    calendar.forEach(e => $(e).empty())
 }
+
 
 const getAllgardens = async function(){
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
     await manager.getGaedens();
     console.log(manager.markerGeneral)
+
     manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
     manager.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
@@ -19,13 +21,13 @@ const getAllgardens = async function(){
 
 
 // Open a defulat map
- window.onload = function() {
-    render.buildMap(32.109333,34.855499)
+window.onload = function () {
+    render.buildMap(32.109333, 34.855499)
     getAllgardens()
- }
+}
 
 // Add new event to calendar
-$("body").on("click" , ".join-hour" ,async function(){
+$("body").on("click", ".join-hour", async function () {
 
     let hour = $(this).siblings(".add-user").find("span").text()
     let id = manager.UserId
@@ -43,6 +45,7 @@ $("body").on("click" , ".join-hour" ,async function(){
     });
 
 })
+
 
 $("body").on("click" , ".show-details" ,async function(){
     const gardenID = $(this).closest(".gardenName").data().id
@@ -64,25 +67,25 @@ $("body").on("click" , ".comment-button" ,async function(){
 } )
 
 // Search for cities
-$("body").on("click","#search-icon",async function(){
+$("body").on("click", "#search-icon", async function () {
     let value = $(".search-inpt").val()
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
-     render.map.remove()
-     render.buildMap(result[0].lat, result[0].lon)
-     getAllgardens()
-  })
-  
+    render.map.remove()
+    render.buildMap(result[0].lat, result[0].lon)
+    getAllgardens()
+})
+
 //   $("body").on("click" , ".join-community", function(){
 //         $(this)
 //   })
 
-  // move to profile
+// move to profile
 
-  $("body").on("click" ,"#move-to-profile", function(){
+$("body").on("click", "#move-to-profile", function () {
     window.location.href = "profile.html"
-  })
+})
 
 
-  emptyClendar()
+emptyClendar()
 
 

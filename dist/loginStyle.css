@@ -63,8 +63,9 @@ body {
     grid-template-columns: 53% 32%;
 }
 
-#middle>img {
-    height: 80vh;
+#dog-image {
+    height: 40vh;
+    margin-left: 5vw;
     justify-self: center;
     align-self: center;
 }
@@ -142,4 +143,19 @@ body {
 
 .input-err {
     border: 2px dotted rgb(197, 34, 34);
+}
+
+@media (max-width: 764px) {
+    #dog-image {
+        display: none;
+    }
+
+    #header {
+        grid-template-columns: 5fr 1fr 1fr 1fr;
+    }
+
+    #logo {
+        font-size: 4vh;
+    }
+
 }
