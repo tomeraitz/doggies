@@ -119,6 +119,13 @@ body {
     font-size: 175%;
     margin-left: 2vw;
     color: #3B413C;
+    display: inline-block;
+}
+
+#calendar-community-name {
+    font-size: 79%;
+    color: #bccc34;
+    margin-left: 1vw;
 }
 
 .hour {

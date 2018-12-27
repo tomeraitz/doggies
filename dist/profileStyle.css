@@ -55,6 +55,7 @@ body {
     background-color: #eee;
     height: 80vh;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #profile-pic-name {
@@ -65,6 +66,10 @@ body {
     justify-self: center;
     color: #3B413C;
 
+}
+
+.input-file {
+    display: none;
 }
 
 #username-p {

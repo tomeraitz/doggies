@@ -58,7 +58,8 @@
             </div>
             <div class="calendar">
                 <div id="day">
-                    <h2>Today</p>
+                    <h2>Today</h2>
+                    <span id="calendar-community-name">(Florentin, TLV)</span>
                 </div>
 
                 <div class="hour">
@@ -464,7 +465,7 @@
         <div></div>
         <div class="posts"></div>
     </div>
-        <script id="posts-template" type="text/x-handlebars-template">
+    <script id="posts-template" type="text/x-handlebars-template">
         {{#each data}}
         <div></div>
         <div class="single-post" data-id="{{_id}}">
@@ -498,10 +499,10 @@
         <div></div>
         {{/each}}
     </script>
-    
-        <script src="homeManager.js"></script>
-        <script src="Renderer.js"></script>
-        <script src="mainHome.js"></script>
+
+    <script src="homeManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="mainHome.js"></script>
 </body>
 
 </html>

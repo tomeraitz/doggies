@@ -22,8 +22,9 @@
         <div class="posts"></div>
 
         <script id="profile-template" type="text/x-handlebars-template">
-            <form id="profile-pic-name">
-                <img src="{{profilePic}}"
+            <form id="profile-pic-name" action="/upload/profile/" method="POST">
+                <input type="file" class="input-file">
+                <img id="profile-image" src="{{profilePic}}"
                         alt="" class="user-profile-img ">
                 <p id="username-p">{{firstName}} {{lastName}}</p>
                 <p id="email-p">{{email}}</p>
@@ -33,6 +34,7 @@
                 <h3>My doggies:</h3>
                 {{#each dogs}}
                 <div class="dog-name">
+                    <input type="file" class="input-file">
                     <img src="{{profilePic}}"
                         alt="" class="dog-img">
                     <p>{{name}}</p>
