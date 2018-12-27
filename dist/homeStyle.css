@@ -33,6 +33,11 @@ body {
     color: #ffffff;
 }
 
+#profilePicHolder>img {
+    height: 10vh;
+    width: 10vh;
+}
+
 #header>table {
     align-self: center;
 }
