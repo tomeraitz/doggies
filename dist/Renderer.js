@@ -64,6 +64,7 @@ class Renderer {
         // Point on position in map to add a new marker
         this.map.on('click', e => {
             $(".input-pop-up").show();
+            $("#garden-name").val("")
             $(".save").click(function () {
                 let gardenName = $("#garden-name").val()
                 let Newlat = e.latlng.lat;
@@ -119,12 +120,12 @@ class Renderer {
         $(`#${id}`).append(newHTML)
     }
 
-    renderPosts(data){
+    renderPosts(data) {
         $(`.posts`).empty();
         console.log(data)
         const source = $('#posts-template').html();
         let template = Handlebars.compile(source);
-        let newHTML = template({data});
+        let newHTML = template({ data });
         $(`.posts`).append(newHTML)
     }
 }

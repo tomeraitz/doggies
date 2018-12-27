@@ -39,13 +39,13 @@ $("body").on("click", ".show-details", async function () {
     const events = await manager.getEvents()
     render.emptyClendar()
     render.renderCalendar(events)
-  
+
     let gardenP = await manager.getPosts(gardenID)
     render.renderPosts(gardenP.posts)
 
+})
 
-
-$("body").on("click" , "#post-button" ,async function(){
+$("body").on("click", "#post-button", async function () {
     const input = $(".post-inpt").val()
     await manager.addnewPost(input)
     let gardenP = await manager.getPosts(manager.garden)
@@ -53,10 +53,10 @@ $("body").on("click" , "#post-button" ,async function(){
 
 })
 
-$("body").on("click" , ".comment-button" ,async function(){
-   const postID = $(this).closest(".single-post").data().id
-   console.log(postID)
-} )
+$("body").on("click", ".comment-button", async function () {
+    const postID = $(this).closest(".single-post").data().id
+    console.log(postID)
+})
 
 // Search for cities
 $("body").on("click", "#search-icon", async function () {
@@ -79,7 +79,7 @@ $("body").on("click", "#move-to-profile", function () {
 
 render.emptyClendar()
 
-  const fakeEvents = [
+const fakeEvents = [
     {
         date: "00:30",
         users: [1, 2, 3, 4]
