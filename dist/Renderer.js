@@ -62,7 +62,7 @@ class Renderer {
         this.map.on('click', e => {
             $(".input-pop-up").show();
             $("#garden-name").val("")
-            $(".save").click(function () {
+            $(".save").click(async function () {
                 let gardenName = $("#garden-name").val()
                 let Newlat = e.latlng.lat;
                 let Newlon = e.latlng.lng;
@@ -72,8 +72,8 @@ class Renderer {
                     lon: Newlon,
                 }
 
-                $.post(`/garden/${manager.UserId}`, garden)
-                render.addUserMarker(Newlat, Newlon, gardenName)
+               await $.post(`/garden/${manager.UserId}`, garden)
+               await render.addUserMarker(Newlat, Newlon, gardenName)
                 getAllgardens()
                 $(".input-pop-up").hide();
             })
