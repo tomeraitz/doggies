@@ -24,7 +24,8 @@ class Renderer {
                         eventCount++
                         if (eventCount <= 3)
                         {
-                            $(e).append(`<img class="event-pic" src="${u.profilePic}"/>`)
+                            console.log(u)
+                            $(e).append(`<img class="event-pic" src="${u.profilePic}" title="${u.firstName} ${u.lastName}">`)
                             // $(e).append(`<img class="user-calendar-img" src="https://www.geogreen.co.uk/wp-content/uploads/2017/12/profile-icon.png"/>`)
                         }
                     })

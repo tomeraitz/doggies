@@ -6,8 +6,8 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 const Event = require('../models/event')
 const Dog = require('../models/dog')
+const moment = require('moment')
 // const request = require('request')
-// const moment = require('moment')
 
 
 
@@ -24,7 +24,8 @@ router.post('/user', async function (req, res) {
     email: req.body.email
   })
   console.log(user)
-  if (user === null) {
+  if (user === null)
+  {
     const newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -36,7 +37,8 @@ router.post('/user', async function (req, res) {
     })
     await newUser.save()
     res.send(newUser)
-  } else {
+  } else
+  {
     res.send()
   }
 })
@@ -44,17 +46,21 @@ router.post('/user', async function (req, res) {
 router.post('/login', async function (req, res) {
   console.log("someone is loging in")
   console.log(req.body)
-  if (req.body.email && req.body.password) {
+  if (req.body.email && req.body.password)
+  {
     const user = await User.findOne({
       email: req.body.email
     }).populate('gardens')
-    if (user.password === req.body.password) {
+    if (user.password === req.body.password)
+    {
       res.send(user._id)
-    } else {
+    } else
+    {
       res.send()
     }
 
-  } else {
+  } else
+  {
     res.send(null)
   }
 })
@@ -110,7 +116,12 @@ router.delete('/user/garden/:userId/:gardenId', function (req, res) {
 // get comunity
 router.get('/garden/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
-    .populate('posts calendar')
+    .populate({
+      path: 'posts calendar',
+      populate: {
+        path: 'users'
+      }
+    })
     .exec(function (err, garden) {
       res.send(garden)
     })
@@ -124,7 +135,7 @@ router.get('/gardenPosts/:gardenId', function (req, res) {
     .populate({
       path: 'posts ',
       populate: {
-        path: 'user comments garden',
+        path: 'user comments garden calendar',
         populate: {
           path: 'user'
         }
@@ -140,7 +151,7 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     user: req.params.userId,
     garden: req.params.gardenId,
     text: req.body.text,
-    date: req.body.date
+    date: moment().format("LLL")
   })
   console.log(`new post: ${post.text}`)
   await post.save()
@@ -172,16 +183,17 @@ router.post('/event/', async function (req, res) {
   ////// check if exist
   const exist = await Event.findOne({
     $and: [{
-        garden: req.body.gardenId
-      },
-      {
-        date: req.body.time
-      }
+      garden: req.body.gardenId
+    },
+    {
+      date: req.body.time
+    }
     ]
   })
   console.log(exist)
   ////////////
-  if (exist == null) {
+  if (exist == null)
+  {
     const event = new Event({
       garden: req.body.gardenId,
       date: req.body.time,
@@ -218,7 +230,7 @@ router.post('/comment/:userId/:postId', async function (req, res) {
     user: req.params.userId,
     post: req.params.postId,
     text: req.body.text,
-    date: req.body.date
+    date: moment().format("LLL")
   })
   console.log(`new comment: ${comment.text}`)
   await comment.save()
@@ -256,12 +268,12 @@ router.get('/allgardens', function (req, res) {
 })
 router.delete('/dog/:userId/:dogId', async function (req, res) {
   const user = await User.findByIdAndUpdate(req.params.userId, {
-      $pull: {
-        dogs: {
-          _id: req.params.dogId
-        }
+    $pull: {
+      dogs: {
+        _id: req.params.dogId
       }
-    })
+    }
+  })
     .populate('posts dogs gardens').exec()
   await Dog.findByIdAndDelete(req.params.dogId)
   res.send(user)
@@ -297,8 +309,8 @@ router.post('/dog/:userId', async function (req, res) {
       dogs: dog
     }
   }, {
-    new: true
-  }).populate('garden posts dogs')
+      new: true
+    }).populate('garden posts dogs')
   res.send(user)
 })
 
@@ -313,10 +325,12 @@ router.post('/upload/profile/:userId', function (req, res) {
   const sampleFile = req.files.sampleFile
   const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err) {
+    if (err)
+    {
       return res.status(500).send(err)
     }
   })
+
   console.log(fileName)
   const user = User.findByIdAndUpdate(req.params.userId, {
       profilePic: "uploads/" + fileName
@@ -330,7 +344,8 @@ router.post('/upload/profile/:userId', function (req, res) {
 
 // post garden pic
 router.post('/upload/garden/:gardenId', function (req, res) {
-  if (Object.keys(req.files).length == 0) {
+  if (Object.keys(req.files).length == 0)
+  {
     res.status(400).send('No files were uploaded.');
     return
   }
@@ -338,13 +353,14 @@ router.post('/upload/garden/:gardenId', function (req, res) {
   const sampleFile = req.files.sampleFile
   const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err) {
+    if (err)
+    {
       return res.status(500).send(err)
     }
   })
   const garden = Garden.findByIdAndUpdate(req.params(req.params.userId), {
-      gardenPic: fileName
-    }, {
+    gardenPic: fileName
+  }, {
       new: true
     })
     .populate('posts calendar')
@@ -355,7 +371,8 @@ router.post('/upload/garden/:gardenId', function (req, res) {
 
 
 router.post('/upload/dog/:dogId', async function (req, res) {
-  if (Object.keys(req.files).length == 0) {
+  if (Object.keys(req.files).length == 0)
+  {
     res.status(400).send('No files were uploaded.');
     return
   }
@@ -363,7 +380,8 @@ router.post('/upload/dog/:dogId', async function (req, res) {
   const sampleFile = req.files.sampleFile
   const uploadPath =  'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err) {
+    if (err)
+    {
       return res.status(500).send(err)
     }
   })

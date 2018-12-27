@@ -20,9 +20,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(fileUpload())
 
-
 app.use('/', api)
-
 
 const port = 3000
 app.listen(port, function () {

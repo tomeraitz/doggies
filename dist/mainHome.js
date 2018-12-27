@@ -14,6 +14,7 @@ const displayUserName = async function () {
     const user = await manager.getUserGardens()
     console.log(user)
     $("#nameDisplay").append(user.firstName)
+    $("#profilePicHolder").append(`<img src="${user.profilePic}">`)
 }
 const displayGardenName = function (gardenName) {
     $("#calendar-community-name").empty()
@@ -58,7 +59,7 @@ $("body").on("click", ".show-details", async function () {
 
 })
 
-$("body").on("click" , "#post-button" ,async function(){
+$("body").on("click", "#post-button", async function () {
 
     const input = $(".post-inpt").val()
     await manager.addnewPost(input)

@@ -33,6 +33,11 @@ body {
     color: #ffffff;
 }
 
+#profilePicHolder>img {
+    height: 10vh;
+    width: 10vh;
+}
+
 #header>table {
     align-self: center;
 }
@@ -163,9 +168,20 @@ body {
 
 /* POSTS STYLE */
 
-.posts {
-    display: grid;
-    margin: 2vh 0;
+.single-comment>.post-pic {
+    height: 3vh;
+    width: 3vh;
+}
+
+.post-pic {
+    height: 5vh;
+    width: 5vh;
+}
+
+.post-date {
+    color: #3B413C;
+    margin-left: 5px;
+    font-size: 70%;
 }
 
 .general-posts {
