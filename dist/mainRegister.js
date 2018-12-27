@@ -26,20 +26,15 @@ $("body").on("click", "#signup-button", async function () {
         birthday: brith,
     }
     console.log(user)
-    if (firstName && lastName && email && password)
-    {
+    if (firstName && lastName && email && password) {
         console.log(user)
         const result = await manager.firstRegister(user)
-        if (result == true)
-
-        {
+        if (result == true) {
             window.location.href = "home.html"
-        } else
-        {
+        } else {
             alert("This mail is already taken")
         }
-    } else
-    {
+    } else {
         console.log("calling input err")
         inputErr()
     }
@@ -55,12 +50,14 @@ $("body").on("click", "#login-button", async function () {
     console.log(user)
     const result = await manager.login(user)
     console.log(result)
-    if (result)
-    {
+    if (result) {
         window.location.href = "home.html"
-    } else
-    {
+    } else {
         $("#login-email").addClass("input-err")
         $("#login-password").addClass("input-err")
     }
 })
+
+let dogs = ["https://i.imgur.com/IFXkKxt.png", "https://i.imgur.com/CLtKAYn.png", "https://i.imgur.com/I0RPAZ4.png"]
+let randomDog = Math.floor(Math.random() * dogs.length)
+$("#dog-image").attr("src", dogs[randomDog])

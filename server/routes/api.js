@@ -108,6 +108,20 @@ router.get('/garden/:gardenId', function (req, res) {
       res.send(garden)
     })
 })
+
+// get gardenPosts
+router.get('/gardenPosts/:gardenId', function (req, res) {
+  Garden.findById(req.params.gardenId)
+  .populate({
+      path: 'posts',
+     populate: {
+          path: 'user'
+      }
+    })
+    .exec(function (err, posts) {
+      res.send(posts)
+    })
+})
 // post new post
 router.post('/post/:userId/:gardenId', async function (req, res) {
   const post = new Post({
@@ -122,7 +136,10 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     { $push: { posts: post } })
   await Garden.findByIdAndUpdate(req.params.gardenId,
     { $push: { posts: post } })
-  res.send(post)
+  await Post.findById(post._id).populate('user').exec(function(err , newpost){
+    res.send(newpost)
+  })
+ 
 })
 
 // //remove post

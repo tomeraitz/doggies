@@ -1,8 +1,6 @@
 const render = new Renderer()
 const manager = new homeManager()
 
-
-
 const getAllgardens = async function () {
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
@@ -11,6 +9,7 @@ const getAllgardens = async function () {
     manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat, g.lon, g.name, g._id))
     manager.markerUser.forEach(g => render.addUserMarker(g.lat, g.lon, g.name, g._id))
 }
+
 
 
 // Open a defulat map
@@ -33,14 +32,31 @@ $("body").on("click", ".join-hour", async function () {
     console.log(event)
 })
 
-//        NOT CHECKED YET :      (NEED TO CREATE EVENTS)
+
 $("body").on("click", ".show-details", async function () {
     const gardenID = $(this).closest(".gardenName").data().id
     manager.garden = gardenID
     const events = await manager.getEvents()
     render.emptyClendar()
     render.renderCalendar(events)
+  
+    let gardenP = await manager.getPosts(gardenID)
+    render.renderPosts(gardenP.posts)
+
+
+
+$("body").on("click" , "#post-button" ,async function(){
+    const input = $(".post-inpt").val()
+    await manager.addnewPost(input)
+    let gardenP = await manager.getPosts(manager.garden)
+    render.renderPosts(gardenP.posts)
+
 })
+
+$("body").on("click" , ".comment-button" ,async function(){
+   const postID = $(this).closest(".single-post").data().id
+   console.log(postID)
+} )
 
 // Search for cities
 $("body").on("click", "#search-icon", async function () {
@@ -61,9 +77,9 @@ $("body").on("click", "#move-to-profile", function () {
     window.location.href = "profile.html"
 })
 
-
 render.emptyClendar()
-const fakeEvents = [
+
+  const fakeEvents = [
     {
         date: "00:30",
         users: [1, 2, 3, 4]

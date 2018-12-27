@@ -7,12 +7,6 @@ class homeManager {
         this.garden = ""
     }
 
-    // async getEvents(gardenName){
-    //    let gardens = await $.get(`/events/${gardenName}`)
-    //     this.markerFromDB = []
-    //     this.markerFromDB.push(...gardens)
-    //  }
-
 
     async addEvent(event) {
         await $.post(`/event`, event)
@@ -39,7 +33,20 @@ class homeManager {
 
     }
 
-    async joinCommunity() {
+    async getPosts(){
+        return await $.get(`/gardenPosts/${this.garden}`)
+
+    }
+
+    async addnewPost(text){
+        const post ={
+            text : text,
+            date : new Date()
+        }
+        await $.post(`/post/${this.UserId}/${this.garden}`, post)
+    }
+
+    async joinCommunity(){
 
     }
 
