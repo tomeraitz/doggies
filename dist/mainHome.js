@@ -106,5 +106,7 @@ $("body").on("click", "#move-to-profile", function () {
     window.location.href = "profile.html"
 })
 
-render.emptyClendar()
 
+const events = manager.getEvents()
+render.emptyClendar()
+render.renderCalendar(events)

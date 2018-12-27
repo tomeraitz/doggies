@@ -203,12 +203,12 @@ router.post('/event/', async function (req, res) {
     Garden.findById(req.body.gardenId)
       .populate('calendar')
       .exec(function (err, garden) {
-        garden.calendar.push(event)
+        garden.update({$addToSet: {calendar: event}})
         garden.save().then(res.send(garden))
       })
   } else
   {
-    exist.users.$addToSet(req.body.userId).exec()
+    exist.update({$addToSet:{users:req.body.userId}})
     exist.save().then(res.send(exist))
   }
 })
