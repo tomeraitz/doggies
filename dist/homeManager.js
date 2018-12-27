@@ -39,6 +39,19 @@ class homeManager {
         
     }
 
+    async getPosts(){
+        return $.get(`/gardenPosts/${this.garden}`)
+
+    }
+
+    async addnewPost(text){
+        const post ={
+            text : text,
+            date : new Date()
+        }
+        await $.post(`/post/${this.UserId}/${this.garden}`, post)
+    }
+
     async joinCommunity(){
 
     }

@@ -7,14 +7,17 @@ const emptyClendar = function () {
     calendar.forEach(e => $(e).empty())
 }
 
-const getAllgardens = async function () {
+
+const getAllgardens = async function(){
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
     await manager.getGaedens();
     console.log(manager.markerGeneral)
-    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat, g.lon, g.name, g._id))
-    manager.markerUser.forEach(g => render.addUserMarker(g.lat, g.lon, g.name, g._id))
+
+    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
+    manager.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
+
 
 
 // Open a defulat map
@@ -43,10 +46,25 @@ $("body").on("click", ".join-hour", async function () {
 
 })
 
-$("body").on("click", ".show-details", function () {
+
+$("body").on("click" , ".show-details" ,async function(){
     const gardenID = $(this).closest(".gardenName").data().id
     manager.garden = gardenID
+    let gardenP = await manager.getPosts(gardenID)
+    render.renderPosts(gardenP.posts)
 })
+
+$("body").on("click" , "#post-button" ,async function(){
+    const input = $(".post-inpt").val()
+    await manager.addnewPost(input)
+    let gardenP = await manager.getPosts(manager.garden)
+    render.renderPosts(gardenP.posts)
+})
+
+$("body").on("click" , ".comment-button" ,async function(){
+   const postID = $(this).closest(".single-post").data().id
+   console.log(postID)
+} )
 
 // Search for cities
 $("body").on("click", "#search-icon", async function () {
