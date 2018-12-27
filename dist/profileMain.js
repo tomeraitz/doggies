@@ -7,8 +7,9 @@ window.onload = async function () {
     renderer.renderProfile(user)
 }
 
-$("#profile-image").on("click", function () {
-    uploadImage.uploadProfileImage()
+$("body").on("click", "#profile-image", function () {
+    $(".input-file").trigger("click")
+    profileManager.uploadProfileImage()
 })
 
 $("body").on("click", "#logo", function () {

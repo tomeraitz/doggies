@@ -7,7 +7,7 @@ class ProfileManager {
     }
 
     uploadProfileImage() {
-        $.post(`/upload`, data => {
+        $.post(`/upload/profile`, data => {
             this.profile = data;
         })
     }
