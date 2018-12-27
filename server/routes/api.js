@@ -112,10 +112,10 @@ router.get('/garden/:gardenId', function (req, res) {
 // get gardenPosts
 router.get('/gardenPosts/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
-  .populate({
+    .populate({
       path: 'posts',
-     populate: {
-          path: 'user'
+      populate: {
+        path: 'user'
       }
     })
     .exec(function (err, posts) {
@@ -136,10 +136,10 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     { $push: { posts: post } })
   await Garden.findByIdAndUpdate(req.params.gardenId,
     { $push: { posts: post } })
-  await Post.findById(post._id).populate('user').exec(function(err , newpost){
+  await Post.findById(post._id).populate('user').exec(function (err, newpost) {
     res.send(newpost)
   })
- 
+
 })
 
 // //remove post
@@ -180,7 +180,7 @@ router.post('/event/', async function (req, res) {
       })
   } else
   {
-    exist.users.push(req.body.userId)
+    exist.users.$addToSet(req.body.userId)
     exist.save().then(res.send(exist))
   }
 })

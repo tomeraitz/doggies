@@ -12,16 +12,13 @@ class Renderer {
     renderCalendar(events) {
         const collection = document.getElementsByClassName("event-span")
         const calendar = Array.prototype.slice.call(collection)
-        console.log(events)
         while (events.length > 0)
         {
             let event = events.pop()
             calendar.forEach(e => {
                 let time = $(e).closest(".event").data().time
-                console.log(`${event.date}`)
                 if (event.date == time)
                 {
-                    console.log("event")
                     let eventCount = 0
                     event.users.forEach(u => {
                         eventCount++
