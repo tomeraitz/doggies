@@ -112,10 +112,14 @@ router.get('/garden/:gardenId', function (req, res) {
 // get gardenPosts
 router.get('/gardenPosts/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
+
     .populate({
-      path: 'posts',
+      path: 'posts ',
       populate: {
-        path: 'user'
+        path: 'user comments garden',
+        populate: {
+          path: 'user'
+        }
       }
     })
     .exec(function (err, posts) {
@@ -180,7 +184,7 @@ router.post('/event/', async function (req, res) {
       })
   } else
   {
-    exist.users.$addToSet(req.body.userId)
+    exist.users.$addToSet(req.body.userId).exec()
     exist.save().then(res.send(exist))
   }
 })

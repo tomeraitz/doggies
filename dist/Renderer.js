@@ -109,13 +109,6 @@ class Renderer {
             .addTo(this.map)
     }
 
-    renderPostsData(user, id) {
-        $(`#${id}`).empty();
-        const source = $('#events-template').html();
-        let template = Handlebars.compile(source);
-        let newHTML = template({ user });
-        $(`#${id}`).append(newHTML)
-    }
 
     renderPosts(data) {
         $(`.posts`).empty();
