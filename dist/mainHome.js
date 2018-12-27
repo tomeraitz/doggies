@@ -1,21 +1,13 @@
 const render = new Renderer()
 const manager = new homeManager()
 
-const emptyClendar = function () {
-    const collection = document.getElementsByClassName("event-span")
-    const calendar = Array.prototype.slice.call(collection)
-    calendar.forEach(e => $(e).empty())
-}
-
-
-const getAllgardens = async function(){
+const getAllgardens = async function () {
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
-    await manager.getGaedens();
+    await manager.getGardens();
     console.log(manager.markerGeneral)
-
-    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
-    manager.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
+    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat, g.lon, g.name, g._id))
+    manager.markerUser.forEach(g => render.addUserMarker(g.lat, g.lon, g.name, g._id))
 }
 
 
@@ -28,37 +20,37 @@ window.onload = function () {
 
 // Add new event to calendar
 $("body").on("click", ".join-hour", async function () {
-
-    let hour = $(this).siblings(".add-user").find("span").text()
-    let id = manager.UserId
-
-    // add garden name
-    let event = {
-        id: id,
-        hour: hour,
-        //garden
+    const event = {
+        userId: manager.UserId,
+        gardenId: manager.garden,
+        time: $(this).siblings(".event").data().time
     }
     await manager.addEvent(event)
-    let result = await manager.getEvents(/*gardenName*/)
-    result.calendar.forEach(pic => {
-        render.renderGardenData(pic.users, eventID)
-    });
-
+    const events = await manager.getEvents()
+    render.emptyClendar()
+    render.renderCalendar(events)
+    console.log(event)
 })
 
 
-$("body").on("click" , ".show-details" ,async function(){
+$("body").on("click", ".show-details", async function () {
     const gardenID = $(this).closest(".gardenName").data().id
     manager.garden = gardenID
+    const events = await manager.getEvents()
+    render.emptyClendar()
+    render.renderCalendar(events)
+  
     let gardenP = await manager.getPosts(gardenID)
     render.renderPosts(gardenP.posts)
-})
+
+
 
 $("body").on("click" , "#post-button" ,async function(){
     const input = $(".post-inpt").val()
     await manager.addnewPost(input)
     let gardenP = await manager.getPosts(manager.garden)
     render.renderPosts(gardenP.posts)
+
 })
 
 $("body").on("click" , ".comment-button" ,async function(){
@@ -85,7 +77,24 @@ $("body").on("click", "#move-to-profile", function () {
     window.location.href = "profile.html"
 })
 
+render.emptyClendar()
 
-emptyClendar()
-
+  const fakeEvents = [
+    {
+        date: "00:30",
+        users: [1, 2, 3, 4]
+    },
+    {
+        date: "01:30",
+        users: [1, 2, 3, 4]
+    },
+    {
+        date: "02:00",
+        users: [1, 2]
+    },
+    {
+        date: "04:30",
+        users: [1, 2, 3, 4, 5, 6, 7]
+    }
+]
 

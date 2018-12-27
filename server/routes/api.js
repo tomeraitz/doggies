@@ -153,30 +153,49 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
 // })
 
 
-//create and join event
+//create and-or join event
 router.post('/event/', async function (req, res) {
-  const event = new Event({
-    garden: req.body.gardenId,
-    date: req.body.time,
-    users: [req.body.userId]
+  ////// check if exist
+  const exist = await Event.findOne({
+    $and: [
+      { garden: req.body.gardenId },
+      { date: req.body.time }
+    ]
   })
-  await event.save()
-  Garden.findById(req.body.gardenId)
-    .populate('calendar')
-    .exec(function (err, garden) {
-      garden.calendar.push(event)
-      garden.save().then(res.send(garden))
+  console.log(exist)
+  ////////////
+  if (exist == null)
+  {
+    const event = new Event({
+      garden: req.body.gardenId,
+      date: req.body.time,
+      users: [req.body.userId]
     })
+    await event.save()
+    Garden.findById(req.body.gardenId)
+      .populate('calendar')
+      .exec(function (err, garden) {
+        garden.calendar.push(event)
+        garden.save().then(res.send(garden))
+      })
+  } else
+  {
+    exist.users.push(req.body.userId)
+    exist.save().then(res.send(exist))
+  }
 })
-//join event
-router.put('/event/', async function (req, res) {
-  Event.findById(req.body.eventId)
-    .populate('users')
-    .exec(function (err, event) {
-      event.users.push(req.body.userId)
-      event.save().then(res.send(event))
-    })
-})
+
+// //join event
+// router.put('/event/', async function (req, res) {
+//   Event.findById(req.body.eventId)
+//     .populate('users')
+//     .exec(function (err, event) {
+//       event.users.push(req.body.userId)
+//       event.save().then(res.send(event))
+//     })
+// })
+
+// get garden events{}
 // add comment
 router.post('/comment/:userId/:postId', async function (req, res) {
   const comment = new Comment({
