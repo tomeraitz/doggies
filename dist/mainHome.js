@@ -4,10 +4,10 @@ const manager = new homeManager()
 const getAllgardens = async function () {
     let user = await manager.getUserGardens();
     await manager.addUserGardens(user.gardens);
-    await manager.getGardens();
-    console.log(manager.markerGeneral)
-    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat, g.lon, g.name, g._id))
-    manager.markerUser.forEach(g => render.addUserMarker(g.lat, g.lon, g.name, g._id))
+
+    await manager.getGaedens()
+    manager.markerGeneral.forEach(g => render.addGenralMarker(g.lat , g.lon , g.name , g._id))
+    manager.markerUser.forEach(g => render.addUserMarker(g.lat , g.lon , g.name , g._id))
 }
 
 
@@ -33,7 +33,9 @@ $("body").on("click", ".join-hour", async function () {
 })
 
 
+
 $("body").on("click", ".show-details", async function () {
+     $("#post-button").prop('disabled', false);
     const gardenID = $(this).closest(".gardenName").data().id
     manager.garden = gardenID
     const events = await manager.getEvents()
@@ -54,22 +56,34 @@ $("body").on("click" , "#post-button" ,async function(){
 })
 
 $("body").on("click" , ".comment-button" ,async function(){
+    const text = $(this).siblings(".comment-inpt").val()
    const postID = $(this).closest(".single-post").data().id
-   console.log(postID)
+    await manager.addNewcomment(postID , text)
+    let gardenP = await manager.getPosts(manager.garden)
+    render.renderPosts(gardenP.posts)
 } )
 
 // Search for cities
 $("body").on("click", "#search-icon", async function () {
     let value = $(".search-inpt").val()
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
-    render.map.remove()
-    render.buildMap(result[0].lat, result[0].lon)
-    getAllgardens()
-})
 
-//   $("body").on("click" , ".join-community", function(){
-//         $(this)
-//   })
+     render.map.remove()
+     render.buildMap(result[0].lat, result[0].lon)
+     getAllgardens()
+  })
+  
+  $("body").on("click" , ".join-community",async function(){
+        const gardenID = $(this).closest(".gardenName").data().id
+        manager.garden = gardenID
+        await manager.joinCommunity()
+        getAllgardens()
+        $("#post-button").prop('disabled', false);
+        let gardenP = await manager.getPosts(gardenID)
+        console.log(gardenP)
+         render.renderPosts(gardenP.posts)
+  })
+
 
 // move to profile
 
