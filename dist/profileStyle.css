@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
-
 body {
     margin: 0;
     padding: 0;
@@ -8,14 +7,18 @@ body {
     background-color: #97D6E1;
 }
 
+.capitals {
+    text-transform: capitalize;
+}
+
 /* HEADER STYLE */
+
 #header {
     margin: 0;
     height: 10%;
     width: 100%;
     display: grid;
     grid-template-columns: 5fr 1fr 1fr;
-
 }
 
 #logo {
@@ -27,14 +30,12 @@ body {
     cursor: pointer;
 }
 
-#header > table {
+#header>table {
     align-self: center;
 }
 
-
 #icon {
     color: #fff
-
 }
 
 .username {
@@ -44,6 +45,7 @@ body {
 }
 
 /* MIDDLE STYLE */
+
 #middle {
     display: grid;
     grid-template-columns: 1fr 2fr 5fr 1fr;
@@ -61,13 +63,16 @@ body {
     display: grid;
 }
 
-#profile-pic-name > p {
+#profile-pic-name>p {
     justify-self: center;
     color: #3B413C;
-
 }
 
 .input-file {
+    display: none;
+}
+
+.input-file-dog {
     display: none;
 }
 
@@ -93,7 +98,7 @@ body {
     margin-left: 2vw;
 }
 
-.add-dog > i {
+.add-dog>i {
     color: #3B413C;
     cursor: pointer;
 }
@@ -103,7 +108,7 @@ body {
     grid-template-columns: 1fr 2fr;
 }
 
-#dogs > h3 {
+#dogs>h3 {
     color: #3B413C;
 }
 
@@ -117,14 +122,13 @@ body {
     margin-left: 2vw;
 }
 
-#communities > h3 {
+#communities>h3 {
     color: #3B413C;
 }
 
 .com-name {
     display: grid;
     grid-template-columns: 1fr 7fr;
-
 }
 
 .mark-icon {
@@ -132,6 +136,23 @@ body {
 }
 
 /* POSTS STYLE */
+
+.post-pic {
+    height: 5vh;
+    width: 5vh;
+}
+
+.single-comment>.post-pic {
+    height: 3vh;
+    width: 3vh;
+}
+
+.post-date {
+    color: #3B413C;
+    margin-left: 5px;
+    font-size: 70%;
+}
+
 .posts {
     display: grid;
     grid-template-columns: 1fr 20fr 1fr;
@@ -183,7 +204,7 @@ body {
     color: #bccc34;
 }
 
-.title > h3 {
+.title>h3 {
     margin: 0;
     color: #3B413C;
 }
@@ -201,7 +222,7 @@ body {
     padding: 1%;
 }
 
-.single-comment > p {
+.single-comment>p {
     margin: 0;
 }
 
@@ -231,7 +252,7 @@ body {
     width: 5vw;
 }
 
-.input-pop-up{
+.input-pop-up {
     display: grid;
     position: fixed;
     top: 27%;
@@ -247,8 +268,7 @@ body {
     display: none;
 }
 
-
-.post-inpt{
+.post-inpt {
     border: none;
     border-radius: 5px;
     width: 58vw;
@@ -256,6 +276,7 @@ body {
     color: #3B413C;
     margin-right: 1vh;
 }
+
 #pop-up-title {
     color: #fff;
 }
@@ -263,7 +284,6 @@ body {
 #pop-up-grid {
     display: grid;
 }
-
 
 #dog-name-input {
     width: 40%;
@@ -274,7 +294,6 @@ body {
     margin-bottom: 2vh;
     justify-self: center;
     display: block;
-
 }
 
 .save {
@@ -293,7 +312,6 @@ body {
     background-color: #bccc34;
     border-radius: 5px;
     color: #3B413C;
-
 }
 
 #file-upload {

@@ -18,17 +18,24 @@
 
     <div id="middle">
         <div></div>
-        <div id="profile"></div>
+        <div id="profile" class="capitals"></div>
         <div class="posts"></div>
 
         <script id="profile-template" type="text/x-handlebars-template">
             <form id="profile-pic-name" action="/upload/profile/" method="POST">
-                <input type="file" class="input-file">
                 <img id="profile-image" src="{{profilePic}}"
-                        alt="" class="user-profile-img ">
+                        alt="" class="user-profile-img ">  
                 <p id="username-p">{{firstName}} {{lastName}}</p>
                 <p id="email-p">{{email}}</p>
             </form>
+            <form class="input-file" ref='uploadForm' 
+                id='uploadForm' 
+                action='/upload/profile/{{_id}}' 
+                method='post' 
+                encType="multipart/form-data">
+                <input type="file"  name="sampleFile"/>
+                <input type='submit' value='Upload' class="submit-pic"/>
+            </form>   
             <div class="input-pop-up">
                     <div id=pop-up-grid>
                         <h1 id="pop-up-title">doggie name?</h1>                       
@@ -46,9 +53,17 @@
                     <img src="{{profilePic}}"
                         alt="" class="dog-img">
                     <p>{{name}}</p>
+                    <form class="input-file-dog" ref='uploadForm' 
+                        id='uploadForm' 
+                        action='/upload/dog/{{_id}}' 
+                        method='post' 
+                        encType="multipart/form-data">
+                        <input type="file"  name="sampleFile"/>
+                        <input type='submit' value='Upload' class="submit-pic"/>
+                    </form>  
                 </div>
                 {{/each}}
-                <input type="file" class="input-file">
+                
                 <div class="add-dog">
                     <i class="fas fa-plus"></i>
                     <i class="fas fa-dog fa-2x"></i>
@@ -74,9 +89,10 @@
         <div class="single-post" data-id="{{_id}}">
             <div></div>
             <div class="username-post">
-                <i class="fas fa-user-circle fa-2x"></i>
-                <span class="user-post">{{user.firstName}} {{user.lastName}}</span>
-                <span class="community-post">({{garden.name}})</span>
+                    <img class="post-pic" src="{{user.profilePic}}">
+                <!-- <i class="fas fa-user-circle fa-2x"></i> -->
+                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date">{{date}} </span>
+                <span class="community-post capitals">({{garden.name}})</span>
                 <button class="delete-post-button"><i class="fas fa-backspace fa-lg"></i></button>
             </div>
             <div></div>
@@ -87,8 +103,9 @@
             <div class="comments">
                 {{#each comments}}
                 <div class="single-comment">
-                    <i class="fas fa-user-circle"></i>
-                    <span>{{user.firstName}} {{user.lastName}}</span>
+                        <img class="post-pic" src="{{user.profilePic}}">
+                    <!-- <i class="fas fa-user-circle"></i> -->
+                    <span class="capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date capitals">{{date}} </span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}

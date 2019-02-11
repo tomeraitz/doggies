@@ -33,6 +33,12 @@ body {
     color: #ffffff;
 }
 
+#profilePicHolder>img {
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+}
+
 #header>table {
     align-self: center;
 }
@@ -163,9 +169,19 @@ body {
 
 /* POSTS STYLE */
 
-.posts {
-    display: grid;
-    margin: 2vh 0;
+.single-comment>.post-pic {
+    height: 3vh;
+    width: 3vh;
+}
+
+.post-pic {
+    height: 5vh;
+    width: 5vh;
+}
+
+.post-date {
+    color: #3B413C;
+    font-size: 70%;
 }
 
 .general-posts {
@@ -193,7 +209,7 @@ body {
     border-radius: 5px;
     height: fit-content;
     margin-top: 2vh;
-    padding-bottom: 1vh;
+    padding-bottom: 2vh;
 }
 
 .username-post {
@@ -217,6 +233,7 @@ body {
 .community-post {
     font-size: 65%;
     color: #bccc34;
+    margin: 5px;
 }
 
 .title>h3 {
@@ -252,6 +269,8 @@ body {
     border-radius: 5px;
     background-color: #eee;
     padding-left: 1vw;
+    margin-top: 1vh;
+    height: 4vh;
 }
 
 .comment-button {
@@ -261,6 +280,7 @@ body {
     color: #3B413C;
     width: fit-content;
     margin-left: 1vh;
+    margin-top: 1vh;
 }
 
 .td-button {
@@ -327,4 +347,37 @@ body {
     background-color: #bccc34;
     border-radius: 5px;
     color: #3B413C;
+}
+
+.leaflet-popup-content {
+    text-transform: capitalize;
+}
+
+@media (max-width: 764px) {
+    .hour{
+        margin-left: 4vw;
+    }
+
+    #logo {
+        font-size: 5vh;
+    }
+
+    #middle {
+        grid-template-rows: 1fr 8fr;
+    }
+
+    .calendar {
+        border-radius: 5px;
+        margin-top: 2vh;
+    }
+
+    .leaflet-container {
+        border-radius: 5px;
+    }
+    
+    /* #comunities {
+        display: block
+    } */
+    
+
 }

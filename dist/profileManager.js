@@ -29,8 +29,8 @@ class ProfileManager {
         })
     }
 
-    async addDog(name){
-       const dog =  {name : name}
+    async addDog(name) {
+        const dog = { name: name }
         await $.post(`dog/${this.UserId}`, dog)
     }
 }

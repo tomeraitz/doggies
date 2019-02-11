@@ -12,8 +12,8 @@ const getAllgardens = async function () {
 
 const displayUserName = async function () {
     const user = await manager.getUserGardens()
-    console.log(user)
     $("#nameDisplay").append(user.firstName)
+    $("#profilePicHolder").append(`<img src="${user.profilePic}">`)
 }
 const displayGardenName = function (gardenName) {
     $("#calendar-community-name").empty()
@@ -39,7 +39,6 @@ $("body").on("click", ".join-hour", async function () {
     const events = await manager.getEvents()
     render.emptyClendar()
     render.renderCalendar(events)
-    console.log(event)
 })
 
 
@@ -58,12 +57,18 @@ $("body").on("click", ".show-details", async function () {
 
 })
 
-$("body").on("click" , "#post-button" ,async function(){
+$("body").on("click", "#post-button", async function () {
 
     const input = $(".post-inpt").val()
-    await manager.addnewPost(input)
-    let gardenP = await manager.getPosts(manager.garden)
-    render.renderPosts(gardenP.posts)
+
+
+    if (input === "") {
+
+    } else {
+        await manager.addnewPost(input)
+        let gardenP = await manager.getPosts(manager.garden)
+        render.renderPosts(gardenP.posts)
+    }
 
 })
 
@@ -82,9 +87,13 @@ $("body").on("click", "#search-icon", async function () {
     let value = $(".search-inpt").val()
     let result = await $.get(`https://nominatim.openstreetmap.org/search?q=${value}&format=json`)
 
-    render.map.remove()
-    render.buildMap(result[0].lat, result[0].lon)
-    getAllgardens()
+    if (value === "") {
+        alert("Please insert a location")
+    } else {
+        render.map.remove()
+        render.buildMap(result[0].lat, result[0].lon)
+        getAllgardens()
+    }
 })
 
 $("body").on("click", ".join-community", async function () {
@@ -94,13 +103,10 @@ $("body").on("click", ".join-community", async function () {
     getAllgardens()
     $("#post-button").prop('disabled', false);
     let gardenP = await manager.getPosts(gardenID)
-    console.log(gardenP)
     render.renderPosts(gardenP.posts)
 })
 
-
 // move to profile
-
 $("body").on("click", "#move-to-profile", function () {
     window.location.href = "profile.html"
 })

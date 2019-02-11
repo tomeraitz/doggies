@@ -18,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'node_modules')))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-
 app.use(fileUpload())
 
 app.use('/', api)

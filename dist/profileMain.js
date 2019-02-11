@@ -3,18 +3,20 @@ const profileManager = new ProfileManager()
 
 window.onload = async function () {
     const user = await profileManager.getUserDetilas(profileManager.UserId)
-    console.log(user)
     renderer.renderProfile(user)
     renderer.rednerPosts(user.posts)
     // renderer.rednerGardens(user.gardens)
 }
 
-// $("body").on("click", "#profile-image", function () {
-//     $(".input-file").trigger("click")
-//     profileManager.uploadProfileImage()
-// })
+$("body").on("click", "#profile-image", async function () {
+    $(".input-file").toggle()
+})
 
-$("body").on("click" , ".add-dog" ,async function(){
+$("body").on("click", ".dog-img", async function () {
+    $(this).siblings(".input-file-dog").toggle()
+})
+
+$("body").on("click", ".add-dog", async function () {
     $(".input-pop-up").show();
     $(".save").click(async function () {
         let name = $("#dog-name-input").val()

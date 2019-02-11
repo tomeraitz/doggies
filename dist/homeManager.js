@@ -1,6 +1,5 @@
 class homeManager {
     constructor() {
-
         this.UserId = JSON.parse(sessionStorage.UserId)
         this.markerGeneral = []
         this.markerUser = []
@@ -18,43 +17,37 @@ class homeManager {
         gardens.forEach(g => {
             let exist = false
             this.markerUser.forEach(e => {
-                if (e._id == g._id)
-                {
+                if (e._id == g._id) {
                     exist = true
                 }
             })
-            if (!exist)
-            {
+            if (!exist) {
                 this.markerGeneral.push(g)
             }
             exist = false
-
         })
-
     }
 
-    async getPosts(){
+    async getPosts() {
         return await $.get(`/gardenPosts/${this.garden}`)
 
     }
 
-    async addNewcomment(postId , text){
+    async addNewcomment(postId, text) {
         let comment = {
-            text: text,
-            date: new Date()
+            text: text
         }
-       await $.post(`/comment/${this.UserId}/${postId}`, comment)
+        await $.post(`/comment/${this.UserId}/${postId}`, comment)
     }
 
-    async addnewPost(text){
-        const post ={
-            text : text,
-            date : new Date()
+    async addnewPost(text) {
+        const post = {
+            text: text,
         }
         await $.post(`/post/${this.UserId}/${this.garden}`, post)
     }
 
-    async joinCommunity(){
+    async joinCommunity() {
 
         await $.ajax({
             url: `/user/garden/${this.UserId}/${this.garden}`,

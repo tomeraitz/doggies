@@ -6,7 +6,7 @@ const postSchema = new Schema({
     garden: { type: Schema.Types.ObjectId, ref: 'Garden' },
     text: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
-    date: Date
+    date: String
 })
 
 const Post = mongoose.model('Post', postSchema)

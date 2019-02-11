@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>doggies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://imageog.flaticon.com/icons/png/512/12/12638.png" />
     <link rel="stylesheet" type="text/css" media="screen" href="homeStyle.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
@@ -35,7 +36,9 @@
             <h1 id="logo">doggies</h1>
             <table id="username-table">
                 <tr id="move-to-profile">
-                    <td><i id="icon" class="fas fa-user-circle fa-2x"></i></td>
+                    <td id="profilePicHolder">
+                        <!-- <i id="icon" class="fas fa-user-circle fa-2x"></i> -->
+                    </td>
                     <td class="username">
                         <p class="capitals" id="nameDisplay"></p>
                     </td>
@@ -54,8 +57,7 @@
         <div></div>
         <div></div>
         <div id="comunities">
-            <div id="map">
-            </div>
+            <div id="map"></div>
             <div class="calendar">
                 <div id="day">
                     <h2>Today</h2>
@@ -446,12 +448,6 @@
                 </div>
             </div>
         </div>
-        <!-- <script id="events-templat" type="text/x-handlebars-template">
-            {{#each user}}
-                    <img class="user-calendar-img" src="{{user.profilePic}}" alt="username">
-            {{/each}}
-            </script> -->
-
         <div></div>
     </div>
 
@@ -471,10 +467,11 @@
         <div class="single-post" data-id="{{_id}}">
             <div></div>
             <div class="username-post">
-                <i class="fas fa-user-circle fa-2x"></i>
-                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span>
-                <span class="community-post capitals">({{garden.name}})</span>
                 <button class="delete-post-button" ><i class="fas fa-backspace fa-lg"></i></button>
+                <img class="post-pic" src="{{user.profilePic}}">
+                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span><span class="community-post capitals">({{garden.name}})</span>
+                <span class="post-date">{{date}}</span>
+                
             </div>
             <div></div>
             <div class="title">
@@ -484,8 +481,8 @@
             <div class="comments">
                 {{#each comments}}
                 <div class="single-comment">
-                    <i class="fas fa-user-circle"></i>
-                    <span class="capitals">{{user.firstName}} {{user.lastName}}</span>
+                    <img class="post-pic" src="{{user.profilePic}}">
+                    <span class="capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date">{{date}}</span>
                     <p>{{text}}</p>
                 </div>
                 {{/each}}
