@@ -12,25 +12,21 @@ class Renderer {
     renderCalendar(events) {
         const collection = document.getElementsByClassName("event-span")
         const calendar = Array.prototype.slice.call(collection)
-        while (events.length > 0)
-        {
+        while (events.length > 0) {
             let event = events.pop()
             calendar.forEach(e => {
                 let time = $(e).closest(".event").data().time
-                if (event.date == time)
-                {
+                if (event.date == time) {
                     let eventCount = 0
                     event.users.forEach(u => {
                         eventCount++
-                        if (eventCount <= 3)
-                        {
+                        if (eventCount <= 3) {
                             console.log(u)
                             $(e).append(`<img class="event-pic" src="${u.profilePic}" title="${u.firstName} ${u.lastName}">`)
                             // $(e).append(`<img class="user-calendar-img" src="https://www.geogreen.co.uk/wp-content/uploads/2017/12/profile-icon.png"/>`)
                         }
                     })
-                    if (eventCount > 3)
-                    {
+                    if (eventCount > 3) {
                         $(e).append(` + ${eventCount - 3}`)
                     }
                 }
@@ -73,8 +69,8 @@ class Renderer {
                     lon: Newlon,
                 }
 
-               await $.post(`/garden/${manager.UserId}`, garden)
-               await render.addUserMarker(Newlat, Newlon, gardenName)
+                await $.post(`/garden/${manager.UserId}`, garden)
+                await render.addUserMarker(Newlat, Newlon, gardenName)
                 getAllgardens()
                 $(".input-pop-up").hide();
             })
@@ -113,7 +109,6 @@ class Renderer {
 
     renderPosts(data) {
         $(`.posts`).empty();
-        console.log(data)
         const source = $('#posts-template').html();
         let template = Handlebars.compile(source);
         let newHTML = template({ data });

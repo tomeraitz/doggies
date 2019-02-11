@@ -181,7 +181,6 @@ body {
 
 .post-date {
     color: #3B413C;
-    margin-left: 5px;
     font-size: 70%;
 }
 
@@ -210,7 +209,7 @@ body {
     border-radius: 5px;
     height: fit-content;
     margin-top: 2vh;
-    padding-bottom: 1vh;
+    padding-bottom: 2vh;
 }
 
 .username-post {
@@ -234,6 +233,7 @@ body {
 .community-post {
     font-size: 65%;
     color: #bccc34;
+    margin: 5px;
 }
 
 .title>h3 {
@@ -269,6 +269,8 @@ body {
     border-radius: 5px;
     background-color: #eee;
     padding-left: 1vw;
+    margin-top: 1vh;
+    height: 4vh;
 }
 
 .comment-button {
@@ -278,6 +280,7 @@ body {
     color: #3B413C;
     width: fit-content;
     margin-left: 1vh;
+    margin-top: 1vh;
 }
 
 .td-button {
@@ -348,4 +351,33 @@ body {
 
 .leaflet-popup-content {
     text-transform: capitalize;
+}
+
+@media (max-width: 764px) {
+    .hour{
+        margin-left: 4vw;
+    }
+
+    #logo {
+        font-size: 5vh;
+    }
+
+    #middle {
+        grid-template-rows: 1fr 8fr;
+    }
+
+    .calendar {
+        border-radius: 5px;
+        margin-top: 2vh;
+    }
+
+    .leaflet-container {
+        border-radius: 5px;
+    }
+    
+    /* #comunities {
+        display: block
+    } */
+    
+
 }

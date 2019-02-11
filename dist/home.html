@@ -57,8 +57,7 @@
         <div></div>
         <div></div>
         <div id="comunities">
-            <div id="map">
-            </div>
+            <div id="map"></div>
             <div class="calendar">
                 <div id="day">
                     <h2>Today</h2>
@@ -449,12 +448,6 @@
                 </div>
             </div>
         </div>
-        <!-- <script id="events-templat" type="text/x-handlebars-template">
-            {{#each user}}
-                    <img class="user-calendar-img" src="{{user.profilePic}}" alt="username">
-            {{/each}}
-            </script> -->
-
         <div></div>
     </div>
 
@@ -474,11 +467,11 @@
         <div class="single-post" data-id="{{_id}}">
             <div></div>
             <div class="username-post">
-                    <img class="post-pic" src="{{user.profilePic}}">
-                <!-- <i class="fas fa-user-circle fa-2x"></i> -->
-                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date">{{date}}</span>
-                <span class="community-post capitals">({{garden.name}})</span>
                 <button class="delete-post-button" ><i class="fas fa-backspace fa-lg"></i></button>
+                <img class="post-pic" src="{{user.profilePic}}">
+                <span class="user-post capitals">{{user.firstName}} {{user.lastName}}</span><span class="community-post capitals">({{garden.name}})</span>
+                <span class="post-date">{{date}}</span>
+                
             </div>
             <div></div>
             <div class="title">
@@ -489,7 +482,6 @@
                 {{#each comments}}
                 <div class="single-comment">
                     <img class="post-pic" src="{{user.profilePic}}">
-                    <!-- <i class="fas fa-user-circle"></i> -->
                     <span class="capitals">{{user.firstName}} {{user.lastName}}</span><span class="post-date">{{date}}</span>
                     <p>{{text}}</p>
                 </div>

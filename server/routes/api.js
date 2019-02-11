@@ -14,18 +14,17 @@ const moment = require('moment')
 //remove user 
 router.delete("/user/:userId", function (req, res) {
   User.findByIdAndDelete(req.params.userId).exec(function (err, user) {
-    console.log(user)
     res.send("removed")
   })
 })
+
 //sign in
 router.post('/user', async function (req, res) {
   const user = await User.findOne({
     email: req.body.email
   })
-  console.log(user)
-  if (user === null)
-  {
+
+  if (user === null) {
     const newUser = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -37,33 +36,29 @@ router.post('/user', async function (req, res) {
     })
     await newUser.save()
     res.send(newUser)
-  } else
-  {
+  } else {
     res.send()
   }
 })
+
 //log in
 router.post('/login', async function (req, res) {
-  console.log("someone is loging in")
-  console.log(req.body)
-  if (req.body.email && req.body.password)
-  {
+
+  if (req.body.email && req.body.password) {
     const user = await User.findOne({
       email: req.body.email
     }).populate('gardens')
-    if (user.password === req.body.password)
-    {
+    if (user.password === req.body.password) {
       res.send(user._id)
-    } else
-    {
+    } else {
       res.send()
     }
 
-  } else
-  {
+  } else {
     res.send(null)
   }
 })
+
 //get all user info
 router.get('/user/:userId', function (req, res) {
   User.findById(req.params.userId)
@@ -80,6 +75,7 @@ router.get('/user/:userId', function (req, res) {
       res.send(user)
     })
 })
+
 //create comunity + join
 router.post('/garden/:userId', async function (req, res) {
   const newGarden = new Garden({
@@ -94,6 +90,7 @@ router.post('/garden/:userId', async function (req, res) {
   await user.save()
   res.send(newGarden)
 })
+
 //join comunity
 router.put('/user/garden/:userId/:gardenId', async function (req, res) {
   const user = await User.findById(req.params.userId).populate('gardens').exec()
@@ -102,9 +99,10 @@ router.put('/user/garden/:userId/:gardenId', async function (req, res) {
   await user.save()
   res.send(garden)
 })
+
 //leave comunity
 router.delete('/user/garden/:userId/:gardenId', function (req, res) {
-  console.log("someone tries to leave a garden")
+
   User.findById(req.params.userId)
     .populate('gardens')
     .exec(async function (err, user) {
@@ -113,6 +111,7 @@ router.delete('/user/garden/:userId/:gardenId', function (req, res) {
       res.send(user)
     })
 })
+
 // get comunity
 router.get('/garden/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
@@ -131,7 +130,6 @@ router.get('/garden/:gardenId', function (req, res) {
 router.get('/gardenPosts/:gardenId', function (req, res) {
   Garden.findById(req.params.gardenId)
 
-
     .populate({
       path: 'posts ',
       populate: {
@@ -145,6 +143,7 @@ router.get('/gardenPosts/:gardenId', function (req, res) {
       res.send(posts)
     })
 })
+
 // post new post
 router.post('/post/:userId/:gardenId', async function (req, res) {
   const post = new Post({
@@ -153,7 +152,7 @@ router.post('/post/:userId/:gardenId', async function (req, res) {
     text: req.body.text,
     date: moment().format("LLL")
   })
-  console.log(`new post: ${post.text}`)
+
   await post.save()
 
   await User.findByIdAndUpdate(req.params.userId,
@@ -190,10 +189,8 @@ router.post('/event/', async function (req, res) {
     }
     ]
   })
-  console.log(exist)
-  ////////////
-  if (exist == null)
-  {
+
+  if (exist == null) {
     const event = new Event({
       garden: req.body.gardenId,
       date: req.body.time,
@@ -206,8 +203,7 @@ router.post('/event/', async function (req, res) {
         garden.calendar.push(event)
         garden.save().then(res.send(garden))
       })
-  } else
-  {
+  } else {
     exist.users.$addToSet(req.body.userId).exec()
     exist.save().then(res.send(exist))
   }
@@ -232,7 +228,7 @@ router.post('/comment/:userId/:postId', async function (req, res) {
     text: req.body.text,
     date: moment().format("LLL")
   })
-  console.log(`new comment: ${comment.text}`)
+
   await comment.save()
   await Post.findByIdAndUpdate(req.params.postId, {
     $push: {
@@ -316,45 +312,40 @@ router.post('/dog/:userId', async function (req, res) {
 
 // post profile pic
 router.post('/upload/profile/:userId', function (req, res) {
-  console.log(req.files)
   if (Object.keys(req.files).length == 0) {
     res.status(400).send('No files were uploaded.');
     return
   }
   const fileName = req.files.sampleFile.name
   const sampleFile = req.files.sampleFile
-  const uploadPath =  'dist/uploads/' + sampleFile.name
+  const uploadPath = 'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err)
-    {
+    if (err) {
       return res.status(500).send(err)
     }
   })
 
-  console.log(fileName)
   const user = User.findByIdAndUpdate(req.params.userId, {
-      profilePic: "uploads/" + fileName
-    }, {
+    profilePic: "uploads/" + fileName
+  }, {
       new: true
     })
     .populate('gardens posts')
     .exec()
-    res.redirect('back');
+  res.redirect('back');
 })
 
 // post garden pic
 router.post('/upload/garden/:gardenId', function (req, res) {
-  if (Object.keys(req.files).length == 0)
-  {
+  if (Object.keys(req.files).length == 0) {
     res.status(400).send('No files were uploaded.');
     return
   }
   const fileName = req.files.sampleFile.name
   const sampleFile = req.files.sampleFile
-  const uploadPath =  'dist/uploads/' + sampleFile.name
+  const uploadPath = 'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err)
-    {
+    if (err) {
       return res.status(500).send(err)
     }
   })
@@ -371,17 +362,15 @@ router.post('/upload/garden/:gardenId', function (req, res) {
 
 
 router.post('/upload/dog/:dogId', async function (req, res) {
-  if (Object.keys(req.files).length == 0)
-  {
+  if (Object.keys(req.files).length == 0) {
     res.status(400).send('No files were uploaded.');
     return
   }
-  const fileName = req.files.sampleFile.name 
+  const fileName = req.files.sampleFile.name
   const sampleFile = req.files.sampleFile
-  const uploadPath =  'dist/uploads/' + sampleFile.name
+  const uploadPath = 'dist/uploads/' + sampleFile.name
   sampleFile.mv(uploadPath, function (err) {
-    if (err)
-    {
+    if (err) {
       return res.status(500).send(err)
     }
   })

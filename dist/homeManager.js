@@ -1,6 +1,5 @@
 class homeManager {
     constructor() {
-
         this.UserId = JSON.parse(sessionStorage.UserId)
         this.markerGeneral = []
         this.markerUser = []
@@ -18,19 +17,15 @@ class homeManager {
         gardens.forEach(g => {
             let exist = false
             this.markerUser.forEach(e => {
-                if (e._id == g._id)
-                {
+                if (e._id == g._id) {
                     exist = true
                 }
             })
-            if (!exist)
-            {
+            if (!exist) {
                 this.markerGeneral.push(g)
             }
             exist = false
-
         })
-
     }
 
     async getPosts() {
